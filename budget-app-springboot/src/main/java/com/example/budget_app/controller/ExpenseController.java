@@ -3,10 +3,9 @@ package com.example.budget_app.controller;
 import com.example.budget_app.model.Category;
 import com.example.budget_app.model.Expense;
 import com.example.budget_app.repository.ExpenseRepository;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +18,7 @@ public class ExpenseController {
     private ExpenseRepository expenseRepository;
 
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String test() {
         // Dummy Expense
         Expense test = new Expense("test", 20.00, Category.MISC, true);
@@ -37,6 +36,8 @@ public class ExpenseController {
     @GetMapping("/expense-categories")
     public String[] returnExpenseCategories() {
 
+        // Returns new array of Enum values that are not ALL CAPS
+
         Category[] values = Category.values();
         String[] newValues = new String[values.length];
 
@@ -45,5 +46,11 @@ public class ExpenseController {
         }
 
         return newValues;
+    }
+
+    @PostMapping("/add-expense")
+    public void addNewExpense(@RequestBody Expense newExpense) {
+        System.out.println(newExpense);
+        expenseRepository.save(newExpense);
     }
 }

@@ -1,9 +1,25 @@
 
 export default function AddExpense({categories}) {
 
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        fetch('http://localhost:8080/add-expense', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                description: 'post request test', 
+                cost: 20.75, 
+                category: ('Misc').toUpperCase(), 
+                checked: true}),
+          });
+        } 
+
     return (
         <div>
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="description">Expense:
                     <input type="text" name="description" />
                 </label>
