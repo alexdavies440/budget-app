@@ -28,7 +28,7 @@ label {
   /* font-size: 1.8em; */
 }
 
-input {
+input, select {
   border-radius: 8px;
   border: 1px solid transparent;
   margin-right: 8px;

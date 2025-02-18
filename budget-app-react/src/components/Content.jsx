@@ -8,8 +8,11 @@ export default function Content() {
 
     const [listData, setListData] = useState([]);
 
+    const [categories, setCategories] = useState([]);
+
     useEffect(() => {
         fetchData();
+        fetchCategories();
     }, [])
 
     async function fetchData() {
@@ -29,27 +32,26 @@ export default function Content() {
         }
       }
 
-    const dummyData = [
-            {
-                id: 1, 
-                description: "groceries",
-                cost: 150 
-            },
-            {
-                id: 2, 
-                description: "electric",
-                cost: 50 
-            },
-            {
-                id: 3, 
-                description: "internet",
-                cost: 65 
+    async function fetchCategories() {
+        const url = 'http://localhost:8080/expense-categories';
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
             }
-        ]
+
+            const json = await response.json();
+            console.log(json);
+            setCategories(json);
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
     
     return (
         <div>
-            <AddExpense />
+            <AddExpense categories={categories} />
             <ExpenseList listData={listData} />
             <Totals listData={listData} />
         </div>

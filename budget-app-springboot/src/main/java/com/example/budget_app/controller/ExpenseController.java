@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -31,5 +32,18 @@ public class ExpenseController {
     @GetMapping("/expense-data")
     public List<Expense> expenseData() {
         return expenseRepository.findAll();
+    }
+
+    @GetMapping("/expense-categories")
+    public String[] returnExpenseCategories() {
+
+        Category[] values = Category.values();
+        String[] newValues = new String[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+            newValues[i] = values[i].getName();
+        }
+
+        return newValues;
     }
 }
