@@ -5,16 +5,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
 public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String description;
 
-    private float cost;
+    private double cost;
 
     private Category category;
 
@@ -22,15 +24,19 @@ public class Expense {
 
     public Expense() {}
 
-    public Expense(String description, float cost, Category category, boolean isChecked) {
+    public Expense(String description, double cost, Category category, boolean isChecked) {
         this.description = description;
         this.cost = cost;
         this.category = category;
         this.isChecked = isChecked;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -41,11 +47,11 @@ public class Expense {
         this.description = description;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
@@ -63,5 +69,28 @@ public class Expense {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Expense expense = (Expense) o;
+        return id == expense.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", cost=" + cost +
+                ", category=" + category +
+                ", isChecked=" + isChecked +
+                '}';
     }
 }
