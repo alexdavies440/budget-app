@@ -32,7 +32,10 @@ export default function Content() {
     return (
         <div>
             <AddExpense fetchData={fetchData}/>
-            <ExpenseList listData={listData} />
+            <ExpenseList 
+                listData={listData}
+                fetchData={fetchData}
+            />
             <Totals listData={listData} />
         </div>
     );

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -51,5 +52,15 @@ public class ExpenseController {
     @PostMapping("/add-expense")
     public void addNewExpense(@RequestBody Expense newExpense) {
         expenseRepository.save(newExpense);
+    }
+
+    @DeleteMapping("/delete-expense/{id}")
+    public void deleteExpense(@PathVariable("id") long expenseId) {
+
+        Optional<Expense> optExpense = expenseRepository.findById(expenseId);
+
+        if (optExpense.isPresent()) {
+            expenseRepository.deleteById(expenseId);
+        }
     }
 }

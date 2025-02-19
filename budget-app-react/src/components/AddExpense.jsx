@@ -22,7 +22,12 @@ export default function AddExpense({fetchData}) {
                 category: newCategory, 
                 checked: true
             }),
-          }).then(fetchData);
+          })
+          .then(setDescription(""))
+          .then(setNewCategory('MISC'))
+          .then(setCost(0))
+          .then(fetchData)
+
         } 
 
     return (
