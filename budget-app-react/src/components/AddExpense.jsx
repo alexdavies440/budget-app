@@ -1,6 +1,12 @@
+import { useState } from "react";
 import SelectCategory from "./SelectCategory";
 
-export default function AddExpense() {
+export default function AddExpense({fetchData}) {
+
+    const [description, setDescription] = useState("");
+    // May decide to pass this up from SelectCategory with useContext if it makes more sense
+    const [newCategory, setNewCategory] = useState('MISC');
+    const [cost, setCost] = useState(0);
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -11,23 +17,27 @@ export default function AddExpense() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                description: 'post request test', 
-                cost: 20.75, 
-                category: 'Misc', 
-                checked: true}),
-          });
+                description: description, 
+                cost: cost, 
+                category: newCategory, 
+                checked: true
+            }),
+          }).then(fetchData);
         } 
 
     return (
         <div>
-            <form action="" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="description">Expense:
-                    <input type="text" name="description" />
+                    <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
                 </label>
 
-                {/* <SelectCategory categories={categories} /> */}
-                <label htmlFor="cost">$
-                    <input type="number" name="cost" />
+                <SelectCategory 
+                    newCategory={newCategory}
+                    setNewCategory={setNewCategory}
+                />
+                <label htmlFor="cost">Cost: $
+                    <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)}/>
                 </label>
                 <button>Add</button>
             </form>

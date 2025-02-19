@@ -31,7 +31,7 @@ export default function Content() {
 
     return (
         <div>
-            <AddExpense />
+            <AddExpense fetchData={fetchData}/>
             <ExpenseList listData={listData} />
             <Totals listData={listData} />
         </div>

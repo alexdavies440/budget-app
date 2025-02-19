@@ -50,7 +50,6 @@ public class ExpenseController {
 
     @PostMapping("/add-expense")
     public void addNewExpense(@RequestBody Expense newExpense) {
-        System.out.println(newExpense);
         expenseRepository.save(newExpense);
     }
 }

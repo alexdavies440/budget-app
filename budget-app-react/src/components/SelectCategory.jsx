@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 
-export default function SelectCategory({expense}) {
+export default function SelectCategory({newCategory, setNewCategory}) {
 
     const [expenseCategories, setExpenseCategories] = useState([]);
-    const [newCategory, setNewCategory] = useState(expense.category);
 
     useEffect(() => {
         fetchCategories();
@@ -24,30 +23,10 @@ export default function SelectCategory({expense}) {
             console.error(error.message);
         }
     }
-
-    async function updateCategory() {
-        const url = 'http://localhost:8080/update-categtory/' + expense.id;
-        
-        fetch(url, {
-                method: 'POST',
-                body: newCategory,
-                headers: {
-                    'Content-Type': 'application/json',
-                  }
-            });
-    }
-
-    function handleCategoryChange(event) {
-        setNewCategory(event.target.value);
-
-        
-
-    }
-
-    
+ 
     return (
-        <label htmlFor="category">- Category:
-            <select name="category" id="category" value={newCategory} onChange={handleCategoryChange}>
+        <label htmlFor="category">Category:
+            <select name="category" id="category" value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
                 {expenseCategories.map((category, index) => {
                     return (
                         <option key={index} value={category.toUpperCase()}>{category}</option>

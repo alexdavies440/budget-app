@@ -8,9 +8,7 @@ export default function ExpenseList({ listData }) {
             {listData.map((expense) => {
                 return (
                     <li key={expense.id}>
-                        ${expense.cost} - {expense.description}
-                        <SelectCategory expense={expense} />
-                        <RemoveExpenseButton />
+                        ${expense.cost} - {expense.description} - {expense.category.toLowerCase()}                        <RemoveExpenseButton />
                     </li>
                 );
             })}
