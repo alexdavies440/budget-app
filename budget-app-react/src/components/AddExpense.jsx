@@ -1,5 +1,6 @@
+import SelectCategory from "./SelectCategory";
 
-export default function AddExpense({categories}) {
+export default function AddExpense() {
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -12,7 +13,7 @@ export default function AddExpense({categories}) {
             body: JSON.stringify({
                 description: 'post request test', 
                 cost: 20.75, 
-                category: ('Misc').toUpperCase(), 
+                category: 'Misc', 
                 checked: true}),
           });
         } 
@@ -24,16 +25,7 @@ export default function AddExpense({categories}) {
                     <input type="text" name="description" />
                 </label>
 
-                <label htmlFor="category">Category:
-                    <select name="category" id="category">
-                        {categories.map((category, index) => {
-                            return (
-                                <option key={index} value={category}>{category}</option>
-                            );
-                        })}
-
-                    </select>
-                </label>
+                {/* <SelectCategory categories={categories} /> */}
                 <label htmlFor="cost">$
                     <input type="number" name="cost" />
                 </label>

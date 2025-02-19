@@ -1,6 +1,7 @@
 import RemoveExpenseButton from "./RemoveExpenseButton";
+import SelectCategory from "./SelectCategory";
 
-export default function ExpenseList({listData}) {
+export default function ExpenseList({ listData }) {
 
     return (
         <ul className="expenseList">
@@ -8,6 +9,7 @@ export default function ExpenseList({listData}) {
                 return (
                     <li key={expense.id}>
                         ${expense.cost} - {expense.description}
+                        <SelectCategory expense={expense} />
                         <RemoveExpenseButton />
                     </li>
                 );
