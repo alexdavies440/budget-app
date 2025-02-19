@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import RemoveExpenseButton from "./RemoveExpenseButton";
 import CheckBox from "./CheckBox";
 
 export default function ExpenseTable({ listData, fetchData, checkedExpenses, setCheckedExpenses }) {
 
-    setCheckedExpenses(listData);
+    // Infinite loop avoided by not calling fetchData here but instead in parent
+    useEffect(() => {
+        setCheckedExpenses(listData);
+    }, [listData])
+
+    function toTitleCase(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     return (
         <table className="expense-table">
@@ -23,8 +31,8 @@ export default function ExpenseTable({ listData, fetchData, checkedExpenses, set
                         <tr key={expense.id}>
 
                             <td>${expense.cost}</td>
-                            <td>{expense.description}</td>
-                            <td>{expense.category.toLowerCase()}</td>
+                            <td>{toTitleCase(expense.description)}</td>
+                            <td>{toTitleCase(expense.category.toLowerCase())}</td>
                             <td>
                                 <CheckBox
                                     expense={expense}

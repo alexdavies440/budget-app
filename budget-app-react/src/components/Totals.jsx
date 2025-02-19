@@ -1,7 +1,7 @@
+import { useState } from "react";
 
+export default function Totals({ checkedExpenses }) {
 
-export default function Totals({checkedExpenses, setCheckedExpenses}) {
-    
     let total = 0;
 
     for (let i = 0; i < checkedExpenses.length; i++) {
@@ -10,7 +10,7 @@ export default function Totals({checkedExpenses, setCheckedExpenses}) {
 
     return (
         <div>
-            <h3>Total Expenses: {total}</h3>
+            <h3>Total Expenses: ＄{total}</h3>
         </div>
     );
 }

@@ -12,6 +12,6 @@ export default function RemoveExpenseButton({id, fetchData}) {
     }
 
     return (
-        <button className="removeButton" onClick={handleRemoveExpense}>x</button>
+        <button className="removeButton" onClick={handleRemoveExpense}>X</button>
     );
 }

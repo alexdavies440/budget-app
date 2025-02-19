@@ -42,8 +42,9 @@ export default function Content() {
                 setCheckedExpenses={setCheckedExpenses}
             />
             <Totals
+                // Placeholder for income
                 checkedExpenses={checkedExpenses}
-                setCheckedExpenses={setCheckedExpenses}
+                // Placeholder for what's leftover
             />
         </div>
     );

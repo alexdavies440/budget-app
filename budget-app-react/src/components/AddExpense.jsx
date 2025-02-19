@@ -40,10 +40,11 @@ export default function AddExpense({fetchData}) {
                     newCategory={newCategory}
                     setNewCategory={setNewCategory}
                 />
-                <label htmlFor="cost">Cost: $
-                    <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} placeholder={cost}/>
+              
+                <label htmlFor="cost">Cost: ＄
+                    <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)}/>
                 </label>
-                <button>Add</button>
+                <button className="add-button">Add</button>
             </form>
         </div>
     );

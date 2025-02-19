@@ -79,20 +79,36 @@ td {
   text-align: left;
 }
 
+input[type="text"] {
+  width: 500px;
+}
+
 input[type="checkbox"] {
   height: 30px;
   width: 30px;
   border-radius: 50px;
 }
 
+input[type="number"] {
+  width: 150px;
+}
+
+.add-button {
+  font-size: 0.9em;
+  width: 80px;
+}
+
 .removeButton {
-  font-size: 1em;
+  /* background-color: transparent; */
+  font-size: 0.9em;
   padding: 1px;
   margin: 5px;
   height: 40px;
   width: 40px;
+  border-radius: 20%;
 }
 
 .removeButton:hover {
-  background-color: darkred;
+  /* background-color: darkred; */
+  box-shadow: inset 0 0 20px darkred;
 }
