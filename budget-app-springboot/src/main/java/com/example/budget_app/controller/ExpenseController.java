@@ -22,7 +22,7 @@ public class ExpenseController {
     @GetMapping("/test")
     public String test() {
         // Dummy Expense
-        Expense test = new Expense("test", 20.00, Category.MISC, true);
+        Expense test = new Expense("test", 20.00, Category.MISC);
 
         expenseRepository.save(test);
 

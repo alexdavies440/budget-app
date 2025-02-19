@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ExpenseList from "./ExpenseList";
 import AddExpense from "./AddExpense";
 import Totals from "./Totals";
 import ExpenseTable from "./ExpenseTable";
@@ -8,6 +7,8 @@ import ExpenseTable from "./ExpenseTable";
 export default function Content() {
 
     const [listData, setListData] = useState([]);
+
+    const [checkedExpenses, setCheckedExpenses] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -32,18 +33,18 @@ export default function Content() {
 
     return (
         <div>
-            <AddExpense fetchData={fetchData}/>
+            <AddExpense fetchData={fetchData} />
             <br />
-            <Totals listData={listData} />
-            {/* <ExpenseList 
-                listData={listData}
-                fetchData={fetchData}
-            /> */}
             <ExpenseTable
                 listData={listData}
                 fetchData={fetchData}
+                checkedExpenses={checkedExpenses}
+                setCheckedExpenses={setCheckedExpenses}
             />
-            {/* <Totals listData={listData} /> */}
+            <Totals
+                checkedExpenses={checkedExpenses}
+                setCheckedExpenses={setCheckedExpenses}
+            />
         </div>
     );
 }

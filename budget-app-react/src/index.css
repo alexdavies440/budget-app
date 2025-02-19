@@ -79,6 +79,12 @@ td {
   text-align: left;
 }
 
+input[type="checkbox"] {
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+}
+
 .removeButton {
   font-size: 1em;
   padding: 1px;

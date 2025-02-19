@@ -6,7 +6,7 @@ export default function AddExpense({fetchData}) {
     const [description, setDescription] = useState("");
     // May decide to pass this up from SelectCategory with useContext if it makes more sense
     const [newCategory, setNewCategory] = useState('MISC');
-    const [cost, setCost] = useState(0);
+    const [cost, setCost] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -20,12 +20,11 @@ export default function AddExpense({fetchData}) {
                 description: description, 
                 cost: cost, 
                 category: newCategory, 
-                checked: true
             }),
           })
           .then(setDescription(""))
           .then(setNewCategory('MISC'))
-          .then(setCost(0))
+          .then(setCost(""))
           .then(fetchData)
 
         } 
@@ -42,7 +41,7 @@ export default function AddExpense({fetchData}) {
                     setNewCategory={setNewCategory}
                 />
                 <label htmlFor="cost">Cost: $
-                    <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)}/>
+                    <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} placeholder={cost}/>
                 </label>
                 <button>Add</button>
             </form>

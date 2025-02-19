@@ -20,24 +20,21 @@ public class Expense {
 
     private Category category;
 
-    private boolean isChecked;
-
     public Expense() {}
 
-    public Expense(String description, double cost, Category category, boolean isChecked) {
+    public Expense(String description, double cost, Category category) {
         this.description = description;
         this.cost = cost;
         this.category = category;
-        this.isChecked = isChecked;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+//    public void setId(long id) {
+//        this.id = id;
+//    }
 
     public String getDescription() {
         return description;
@@ -63,14 +60,6 @@ public class Expense {
         this.category = category;
     }
 
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -90,7 +79,6 @@ public class Expense {
                 ", description='" + description + '\'' +
                 ", cost=" + cost +
                 ", category=" + category +
-                ", isChecked=" + isChecked +
                 '}';
     }
 }
