@@ -16,16 +16,15 @@
 
 body {
   font-size: 1.8em;
+  margin: 20px;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.5;
   text-align: center;
 }
 
 label {
-  /* font-size: 1.8em; */
+  font-weight: bold;
 }
 
 input, select {
@@ -54,7 +53,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: 0.25s ease-out;
 }
 button:hover {
   border-color: #646cff;
@@ -65,7 +64,19 @@ button:focus-visible {
 }
 
 .expenseList {
-  /* font-size: 1.8em; */
+  margin-left: 50px;
+}
+
+.expense-table {
+}
+
+th {
+  padding-right: 100px;
+  text-align: left;
+}
+
+td {
+  text-align: left;
 }
 
 .removeButton {

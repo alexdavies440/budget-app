@@ -10,7 +10,7 @@ export default function Totals({listData}) {
 
     return (
         <div>
-            Total Expenses: {total}
+            <h3>Total Expenses: {total}</h3>
         </div>
     );
 }

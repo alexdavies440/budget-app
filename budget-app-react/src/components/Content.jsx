@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ExpenseList from "./ExpenseList";
 import AddExpense from "./AddExpense";
 import Totals from "./Totals";
+import ExpenseTable from "./ExpenseTable";
 
 
 export default function Content() {
@@ -32,11 +33,17 @@ export default function Content() {
     return (
         <div>
             <AddExpense fetchData={fetchData}/>
-            <ExpenseList 
+            <br />
+            <Totals listData={listData} />
+            {/* <ExpenseList 
+                listData={listData}
+                fetchData={fetchData}
+            /> */}
+            <ExpenseTable
                 listData={listData}
                 fetchData={fetchData}
             />
-            <Totals listData={listData} />
+            {/* <Totals listData={listData} /> */}
         </div>
     );
 }
