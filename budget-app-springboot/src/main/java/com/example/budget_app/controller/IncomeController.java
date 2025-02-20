@@ -5,9 +5,7 @@ import com.example.budget_app.model.Expense;
 import com.example.budget_app.model.IncomeSource;
 import com.example.budget_app.repository.IncomeSourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +27,12 @@ public class IncomeController {
     }
 
     @GetMapping("/income-data")
-    public List<IncomeSource> expenseData() {
+    public List<IncomeSource> incomeData() {
         return incomeSourceRepository.findAll();
+    }
+
+    @PostMapping("/add-income")
+    public void addNewIncomeSource(@RequestBody IncomeSource incomeSource) {
+        incomeSourceRepository.save(incomeSource);
     }
 }

@@ -55,7 +55,7 @@ export default function Content() {
     return (
         <div>
             <AddExpense fetchExpenseData={fetchExpenseData} />
-            <AddIncome />
+            <AddIncome fetchIncomeData={fetchIncomeData} />
             <br />
             <ExpenseTable
                 expenseData={expenseData}
@@ -66,7 +66,6 @@ export default function Content() {
             <Totals
                 incomeData={incomeData}
                 checkedExpenses={checkedExpenses}
-                // Placeholder for what's leftover
             />
         </div>
     );
