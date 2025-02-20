@@ -18,7 +18,7 @@ export default function AddExpense({fetchData}) {
             },
             body: JSON.stringify({
                 description: description, 
-                cost: cost, 
+                amount: cost, 
                 category: newCategory, 
             }),
           })

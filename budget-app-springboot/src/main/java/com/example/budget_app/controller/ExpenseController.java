@@ -18,17 +18,6 @@ public class ExpenseController {
     @Autowired
     private ExpenseRepository expenseRepository;
 
-
-    @GetMapping("/test")
-    public String test() {
-        // Dummy Expense
-        Expense test = new Expense("test", 20.00, Category.MISC);
-
-        expenseRepository.save(test);
-
-        return test.toString();
-    }
-
     @GetMapping("/expense-data")
     public List<Expense> expenseData() {
         return expenseRepository.findAll();

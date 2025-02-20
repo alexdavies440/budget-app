@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AddExpense from "./AddExpense";
 import Totals from "./Totals";
 import ExpenseTable from "./ExpenseTable";
+import AddIncome from "./AddIncome";
 
 
 export default function Content() {
@@ -34,6 +35,7 @@ export default function Content() {
     return (
         <div>
             <AddExpense fetchData={fetchData} />
+            <AddIncome />
             <br />
             <ExpenseTable
                 listData={listData}

@@ -20,17 +20,17 @@ export default function ExpenseTable({ listData, fetchData, checkedExpenses, set
                     <th>Cost</th>
                     <th>Description</th>
                     <th>Category</th>
-                    <th>Checked</th>
+                    <th>Include in Total</th>
                     <th>Remove</th>
                 </tr>
             </thead>
-
+            
             <tbody>
                 {listData.map((expense) => {
                     return (
                         <tr key={expense.id}>
 
-                            <td>${expense.cost}</td>
+                            <td>${expense.amount}</td>
                             <td>{toTitleCase(expense.description)}</td>
                             <td>{toTitleCase(expense.category.toLowerCase())}</td>
                             <td>
