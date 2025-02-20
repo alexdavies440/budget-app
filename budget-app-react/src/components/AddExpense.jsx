@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SelectCategory from "./SelectCategory";
 
-export default function AddExpense({fetchData}) {
+export default function AddExpense({fetchExpenseData}) {
 
     const [description, setDescription] = useState("");
     // May decide to pass this up from SelectCategory with useContext if it makes more sense
@@ -25,7 +25,7 @@ export default function AddExpense({fetchData}) {
           .then(setDescription(""))
           .then(setNewCategory('MISC'))
           .then(setCost(""))
-          .then(fetchData)
+          .then(fetchExpenseData)
 
         } 
 

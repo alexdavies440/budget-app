@@ -1,6 +1,6 @@
 
 
-export default function RemoveExpenseButton({id, fetchData}) {
+export default function RemoveExpenseButton({id, fetchExpenseData}) {
     
     function handleRemoveExpense() {
 
@@ -8,7 +8,7 @@ export default function RemoveExpenseButton({id, fetchData}) {
 
         fetch(url + id, {
             method: 'DELETE'
-          }).then(fetchData);
+          }).then(fetchExpenseData);
     }
 
     return (

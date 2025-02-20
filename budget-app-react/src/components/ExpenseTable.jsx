@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import RemoveExpenseButton from "./RemoveExpenseButton";
 import CheckBox from "./CheckBox";
 
-export default function ExpenseTable({ listData, fetchData, checkedExpenses, setCheckedExpenses }) {
+export default function ExpenseTable({ expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
     // Infinite loop avoided by not calling fetchData here but instead in parent
     useEffect(() => {
-        setCheckedExpenses(listData);
-    }, [listData])
+        setCheckedExpenses(expenseData);
+    }, [expenseData])
 
     function toTitleCase(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -26,7 +26,7 @@ export default function ExpenseTable({ listData, fetchData, checkedExpenses, set
             </thead>
             
             <tbody>
-                {listData.map((expense) => {
+                {expenseData.map((expense) => {
                     return (
                         <tr key={expense.id}>
 
@@ -43,7 +43,7 @@ export default function ExpenseTable({ listData, fetchData, checkedExpenses, set
                             <td>
                                 <RemoveExpenseButton
                                     id={expense.id}
-                                    fetchData={fetchData}
+                                    fetchExpenseData={fetchExpenseData}
                                 />
                             </td>
 
