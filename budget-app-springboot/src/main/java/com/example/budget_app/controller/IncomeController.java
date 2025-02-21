@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -34,5 +35,15 @@ public class IncomeController {
     @PostMapping("/add-income")
     public void addNewIncomeSource(@RequestBody IncomeSource incomeSource) {
         incomeSourceRepository.save(incomeSource);
+    }
+
+    @DeleteMapping("/delete-income-source/{id}")
+    public void deleteIncomeSource(@PathVariable long id) {
+
+        Optional<IncomeSource> optIncomeSource = incomeSourceRepository.findById(id);
+
+        if (optIncomeSource.isPresent()) {
+            incomeSourceRepository.deleteById(id);
+        }
     }
 }

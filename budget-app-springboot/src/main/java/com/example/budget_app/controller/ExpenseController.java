@@ -44,12 +44,12 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/delete-expense/{id}")
-    public void deleteExpense(@PathVariable("id") long expenseId) {
+    public void deleteExpense(@PathVariable long id) {
 
-        Optional<Expense> optExpense = expenseRepository.findById(expenseId);
+        Optional<Expense> optExpense = expenseRepository.findById(id);
 
         if (optExpense.isPresent()) {
-            expenseRepository.deleteById(expenseId);
+            expenseRepository.deleteById(id);
         }
     }
 }

@@ -3,20 +3,19 @@ import RemoveExpenseButton from "./RemoveExpenseButton";
 import CheckBox from "./CheckBox";
 import RemoveButton from "./RemoveButton";
 
-export default function ExpenseTable({ expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
+export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
     // Infinite loop avoided by not calling fetchData here but instead in parent
     useEffect(() => {
         setCheckedExpenses(expenseData);
     }, [expenseData])
 
-    function toTitleCase(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     return (
         <table className="expense-table">
             <thead>
+                <tr>
+                    <h3>Expenses</h3>
+                </tr>
                 <tr>
                     <th>Cost</th>
                     <th>Description</th>

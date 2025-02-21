@@ -3,6 +3,7 @@ import AddExpense from "./AddExpense";
 import Totals from "./Totals";
 import ExpenseTable from "./ExpenseTable";
 import AddIncome from "./AddIncome";
+import IncomeTable from "./IncomeTable";
 
 
 export default function Content() {
@@ -52,16 +53,27 @@ export default function Content() {
         }
     }
 
+    function toTitleCase(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <div>
             <AddExpense fetchExpenseData={fetchExpenseData} />
             <AddIncome fetchIncomeData={fetchIncomeData} />
             <br />
             <ExpenseTable
+                toTitleCase={toTitleCase}
                 expenseData={expenseData}
                 fetchExpenseData={fetchExpenseData}
                 checkedExpenses={checkedExpenses}
                 setCheckedExpenses={setCheckedExpenses}
+            />
+            <br />
+            <IncomeTable 
+                toTitleCase={toTitleCase}
+                incomeData={incomeData}
+                fetchIncomeData={fetchIncomeData}
             />
             <Totals
                 incomeData={incomeData}

@@ -16,9 +16,9 @@ export default function Totals({ checkedExpenses, incomeData }) {
 
     return (
         <div>
-            <h3>Total Income: ＄{incomeTotal}</h3>
-            <h3>Total Expenses: ＄{expenseTotal}</h3>
-            <h3>Difference: ＄{incomeTotal - expenseTotal}</h3>
+            <h3>Total Income: ${incomeTotal}</h3>
+            <h3>Total Expenses: ${expenseTotal}</h3>
+            <h3>Difference: ${incomeTotal - expenseTotal}</h3>
         </div>
     );
 }
