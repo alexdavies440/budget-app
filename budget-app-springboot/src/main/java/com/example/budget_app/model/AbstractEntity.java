@@ -12,6 +12,7 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // Need validation dependency for @NotBlank
     private String description;
 
     private double amount;

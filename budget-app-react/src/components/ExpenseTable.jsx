@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import RemoveExpenseButton from "./RemoveExpenseButton";
 import CheckBox from "./CheckBox";
+import RemoveButton from "./RemoveButton";
 
 export default function ExpenseTable({ expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
@@ -41,9 +42,10 @@ export default function ExpenseTable({ expenseData, fetchExpenseData, checkedExp
                                 />
                             </td>
                             <td>
-                                <RemoveExpenseButton
+                                <RemoveButton
+                                    deleteUrl={'http://localhost:8080/delete-expense/'}
                                     id={expense.id}
-                                    fetchExpenseData={fetchExpenseData}
+                                    fetchData={fetchExpenseData}
                                 />
                             </td>
 

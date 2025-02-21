@@ -98,7 +98,7 @@ input[type="number"] {
   width: 80px;
 }
 
-.removeButton {
+.remove-button {
   /* background-color: transparent; */
   font-size: 0.9em;
   padding: 1px;
@@ -108,7 +108,7 @@ input[type="number"] {
   border-radius: 20%;
 }
 
-.removeButton:hover {
+.remove-button:hover {
   /* background-color: darkred; */
   box-shadow: inset 0 0 20px darkred;
 }
