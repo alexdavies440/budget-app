@@ -15,7 +15,7 @@ export default function Totals({ checkedExpenses, checkedAllocations }) {
 
     return (
         <div>
-            <h3>Total Income: ${allocationTotal}</h3>
+            <h3>Total Allocated: ${allocationTotal}</h3>
             <h3>Total Expenses: ${expenseTotal}</h3>
             <h3>Difference: ${allocationTotal - expenseTotal}</h3>
         </div>

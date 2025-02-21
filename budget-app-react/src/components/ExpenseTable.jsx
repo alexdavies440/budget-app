@@ -9,6 +9,20 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
         setCheckedExpenses(expenseData);
     }, [expenseData])
 
+    function expensePercent(expense) {
+        let expenseTotal = 0;
+        let num = 0;
+        for (let i = 0; i < checkedExpenses.length; i++) {
+            expenseTotal += checkedExpenses[i].amount;
+        }
+
+        if (checkedExpenses.includes(expense)) {
+            num = (expense.amount / expenseTotal) * 10000;
+        }
+        
+        return `${Math.round(num) / 100}%`;
+    }
+
     return (
         <div>
             <h2>Expenses</h2>
@@ -20,6 +34,7 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                         <th>Category</th>
                         <th>Include</th>
                         <th>Remove</th>
+                        <th>Percent of Total Expenses</th>
                     </tr>
                 </thead>
 
@@ -45,6 +60,7 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                         fetchData={fetchExpenseData}
                                     />
                                 </td>
+                                <td>{expensePercent(expense)}</td>
 
                             </tr>
                         );
