@@ -1,22 +1,23 @@
+import { useEffect } from "react";
 import RemoveButton from "./RemoveButton";
+import CheckBox from "./CheckBox";
 
-RemoveButton
 
-export default function IncomeTable({ toTitleCase, incomeData, fetchIncomeData }) {
+export default function IncomeTable({ toTitleCase, incomeData, fetchIncomeData, checkedAllocations, setCheckedAllocations }) {
 
-    function toTitleCase(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+    useEffect(() => {
+            setCheckedAllocations(incomeData);
+        }, [incomeData])
 
     return (
         <table>
             <thead>
-                <tr>
-                    <h3>Revenue</h3>
-                </tr>
+                <tr>Revenue</tr>
                 <tr>
                     <th>Allocation</th>
                     <th>Source</th>
+                    <th>Include</th>
+                    <th>Remove</th>
                 </tr>
 
             </thead>
@@ -26,6 +27,13 @@ export default function IncomeTable({ toTitleCase, incomeData, fetchIncomeData }
                         <tr>
                             <td>${incomeSource.amount}</td>
                             <td>{toTitleCase(incomeSource.description)}</td>
+                            <td>
+                                <CheckBox
+                                    item={incomeSource}
+                                    checkedItems={checkedAllocations}
+                                    setCheckedItems={setCheckedAllocations}
+                                />
+                            </td>
                             <td>
                                 <RemoveButton
                                     deleteUrl={'http://localhost:8080/delete-income-source/'}

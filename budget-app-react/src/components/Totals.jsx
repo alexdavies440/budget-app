@@ -1,6 +1,5 @@
-import { useState } from "react";
 
-export default function Totals({ checkedExpenses, incomeData }) {
+export default function Totals({ checkedExpenses, checkedAllocations }) {
 
     let expenseTotal = 0;
 
@@ -10,8 +9,8 @@ export default function Totals({ checkedExpenses, incomeData }) {
 
     let incomeTotal = 0;
 
-    for (let i = 0; i < incomeData.length; i++) {
-        incomeTotal += incomeData[i].amount;
+    for (let i = 0; i < checkedAllocations.length; i++) {
+        incomeTotal += checkedAllocations[i].amount;
     }
 
     return (

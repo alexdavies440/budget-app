@@ -14,6 +14,8 @@ export default function Content() {
 
     const [checkedExpenses, setCheckedExpenses] = useState([]);
 
+    const [checkedAllocations, setCheckedAllocations] = useState([]);
+
     useEffect(() => {
         fetchExpenseData();
         fetchIncomeData();
@@ -74,9 +76,11 @@ export default function Content() {
                 toTitleCase={toTitleCase}
                 incomeData={incomeData}
                 fetchIncomeData={fetchIncomeData}
+                checkedAllocations={checkedAllocations}
+                setCheckedAllocations={setCheckedAllocations}
             />
             <Totals
-                incomeData={incomeData}
+                checkedAllocations={checkedAllocations}
                 checkedExpenses={checkedExpenses}
             />
         </div>

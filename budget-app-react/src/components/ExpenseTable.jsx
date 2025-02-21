@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import RemoveExpenseButton from "./RemoveExpenseButton";
 import CheckBox from "./CheckBox";
 import RemoveButton from "./RemoveButton";
 
@@ -13,14 +12,12 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
     return (
         <table className="expense-table">
             <thead>
-                <tr>
-                    <h3>Expenses</h3>
-                </tr>
+                <tr>Expenses</tr>
                 <tr>
                     <th>Cost</th>
                     <th>Description</th>
                     <th>Category</th>
-                    <th>Include in Total</th>
+                    <th>Include</th>
                     <th>Remove</th>
                 </tr>
             </thead>
@@ -35,9 +32,9 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                             <td>{toTitleCase(expense.category.toLowerCase())}</td>
                             <td>
                                 <CheckBox
-                                    expense={expense}
-                                    checkedExpenses={checkedExpenses}
-                                    setCheckedExpenses={setCheckedExpenses}
+                                    item={expense}
+                                    checkedItems={checkedExpenses}
+                                    setCheckedItems={setCheckedExpenses}
                                 />
                             </td>
                             <td>
