@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import AddExpense from "./AddExpense";
 import Totals from "./Totals";
 import ExpenseTable from "./ExpenseTable";
-import AddIncome from "./AddIncome";
+import AddAllocation from "./AddAllocation";
 import AllocationTable from "./AllocationTable";
 
 
@@ -62,8 +62,7 @@ export default function Content() {
     return (
         <div>
             <AddExpense fetchExpenseData={fetchExpenseData} />
-            <AddIncome fetchAllocationData={fetchAllocationData} />
-            <br />
+            <AddAllocation fetchAllocationData={fetchAllocationData} />
             <ExpenseTable
                 toTitleCase={toTitleCase}
                 expenseData={expenseData}

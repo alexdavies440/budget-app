@@ -10,45 +10,47 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
     }, [expenseData])
 
     return (
-        <table className="expense-table">
-            <thead>
-                <tr>Expenses</tr>
-                <tr>
-                    <th>Cost</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Include</th>
-                    <th>Remove</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                {expenseData.map((expense) => {
-                    return (
-                        <tr key={expense.id}>
+        <div>
+            <h2>Expenses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cost</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Include</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
 
-                            <td>${expense.amount}</td>
-                            <td>{toTitleCase(expense.description)}</td>
-                            <td>{toTitleCase(expense.category.toLowerCase())}</td>
-                            <td>
-                                <CheckBox
-                                    item={expense}
-                                    checkedItems={checkedExpenses}
-                                    setCheckedItems={setCheckedExpenses}
-                                />
-                            </td>
-                            <td>
-                                <RemoveButton
-                                    deleteUrl={'http://localhost:8080/delete-expense/'}
-                                    id={expense.id}
-                                    fetchData={fetchExpenseData}
-                                />
-                            </td>
+                <tbody>
+                    {expenseData.map((expense) => {
+                        return (
+                            <tr key={expense.id}>
 
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                                <td>${expense.amount}</td>
+                                <td>{toTitleCase(expense.description)}</td>
+                                <td>{toTitleCase(expense.category.toLowerCase())}</td>
+                                <td>
+                                    <CheckBox
+                                        item={expense}
+                                        checkedItems={checkedExpenses}
+                                        setCheckedItems={setCheckedExpenses}
+                                    />
+                                </td>
+                                <td>
+                                    <RemoveButton
+                                        deleteUrl={'http://localhost:8080/delete-expense/'}
+                                        id={expense.id}
+                                        fetchData={fetchExpenseData}
+                                    />
+                                </td>
+
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }
