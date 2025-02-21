@@ -3,14 +3,14 @@ import AddExpense from "./AddExpense";
 import Totals from "./Totals";
 import ExpenseTable from "./ExpenseTable";
 import AddIncome from "./AddIncome";
-import IncomeTable from "./IncomeTable";
+import AllocationTable from "./AllocationTable";
 
 
 export default function Content() {
 
     const [expenseData, setExpenseData] = useState([]);
 
-    const [incomeData, setIncomeData] = useState([]);
+    const [allocationData, setAllocationData] = useState([]);
 
     const [checkedExpenses, setCheckedExpenses] = useState([]);
 
@@ -18,7 +18,7 @@ export default function Content() {
 
     useEffect(() => {
         fetchExpenseData();
-        fetchIncomeData();
+        fetchAllocationData();
     }, [])
 
     async function fetchExpenseData() {
@@ -38,8 +38,8 @@ export default function Content() {
         }
     }
 
-    async function fetchIncomeData() {
-        const url = 'http://localhost:8080/income-data';
+    async function fetchAllocationData() {
+        const url = 'http://localhost:8080/allocation-data';
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -48,7 +48,7 @@ export default function Content() {
 
             const json = await response.json();
             console.log(json);
-            setIncomeData(json);
+            setAllocationData(json);
 
         } catch (error) {
             console.error(error.message);
@@ -62,7 +62,7 @@ export default function Content() {
     return (
         <div>
             <AddExpense fetchExpenseData={fetchExpenseData} />
-            <AddIncome fetchIncomeData={fetchIncomeData} />
+            <AddIncome fetchAllocationData={fetchAllocationData} />
             <br />
             <ExpenseTable
                 toTitleCase={toTitleCase}
@@ -72,10 +72,10 @@ export default function Content() {
                 setCheckedExpenses={setCheckedExpenses}
             />
             <br />
-            <IncomeTable 
+            <AllocationTable 
                 toTitleCase={toTitleCase}
-                incomeData={incomeData}
-                fetchIncomeData={fetchIncomeData}
+                allocationData={allocationData}
+                fetchAllocationData={fetchAllocationData}
                 checkedAllocations={checkedAllocations}
                 setCheckedAllocations={setCheckedAllocations}
             />

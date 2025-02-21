@@ -3,16 +3,16 @@ import RemoveButton from "./RemoveButton";
 import CheckBox from "./CheckBox";
 
 
-export default function IncomeTable({ toTitleCase, incomeData, fetchIncomeData, checkedAllocations, setCheckedAllocations }) {
+export default function IncomeTable({ toTitleCase, allocationData, fetchAllocationData, checkedAllocations, setCheckedAllocations }) {
 
     useEffect(() => {
-            setCheckedAllocations(incomeData);
-        }, [incomeData])
+            setCheckedAllocations(allocationData);
+        }, [allocationData])
 
     return (
         <table>
             <thead>
-                <tr>Revenue</tr>
+                <tr>Allocated Revenue</tr>
                 <tr>
                     <th>Allocation</th>
                     <th>Source</th>
@@ -22,23 +22,23 @@ export default function IncomeTable({ toTitleCase, incomeData, fetchIncomeData, 
 
             </thead>
             <tbody>
-                {incomeData.map((incomeSource) => {
+                {allocationData.map((allocation) => {
                     return (
                         <tr>
-                            <td>${incomeSource.amount}</td>
-                            <td>{toTitleCase(incomeSource.description)}</td>
+                            <td>${allocation.amount}</td>
+                            <td>{toTitleCase(allocation.description)}</td>
                             <td>
                                 <CheckBox
-                                    item={incomeSource}
+                                    item={allocation}
                                     checkedItems={checkedAllocations}
                                     setCheckedItems={setCheckedAllocations}
                                 />
                             </td>
                             <td>
                                 <RemoveButton
-                                    deleteUrl={'http://localhost:8080/delete-income-source/'}
-                                    id={incomeSource.id}
-                                    fetchData={fetchIncomeData}
+                                    deleteUrl={'http://localhost:8080/delete-allocation/'}
+                                    id={allocation.id}
+                                    fetchData={fetchAllocationData}
                                 />
                             </td>
                         </tr>

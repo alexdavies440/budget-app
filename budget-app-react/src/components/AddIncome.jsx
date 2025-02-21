@@ -1,26 +1,26 @@
 import { useState } from "react";
 
-export default function AddIncome({ fetchIncomeData }) {
+export default function AddIncome({ fetchAllocationData }) {
 
-    const [incomeDescription, setIncomeDescription] = useState("");
-    const [incomeAmount, setIncomeAmount] = useState("");
+    const [allocationDescription, setAllocationDescription] = useState("");
+    const [allocationAmount, setAllocationAmount] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        fetch('http://localhost:8080/add-income', {
+        fetch('http://localhost:8080/add-allocation', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                description: incomeDescription, 
-                amount: incomeAmount, 
+                description: allocationDescription, 
+                amount: allocationAmount, 
             }),
           })
-          .then(setIncomeDescription(""))
-          .then(setIncomeAmount(""))
-          .then(fetchIncomeData)
+          .then(setAllocationDescription(""))
+          .then(setAllocationAmount(""))
+          .then(fetchAllocationData)
 
         } 
 
@@ -28,10 +28,10 @@ export default function AddIncome({ fetchIncomeData }) {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Income Source:
-                    <input type="text" name="income-source" value={incomeDescription} onChange={(e) => setIncomeDescription(e.target.value)}/>
+                    <input type="text" name="allocation-description" value={allocationDescription} onChange={(e) => setAllocationDescription(e.target.value)}/>
                 </label>
                 <label>Amount per Month:
-                    <input type="number" name="income-amount" value={incomeAmount} onChange={(e) => setIncomeAmount(e.target.value)}/>
+                    <input type="number" name="allocation-amount" value={allocationAmount} onChange={(e) => setAllocationAmount(e.target.value)}/>
                 </label>
                 <button className="add-button">Add</button>
             </form>
