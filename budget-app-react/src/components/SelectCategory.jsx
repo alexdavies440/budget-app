@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function SelectCategory({newCategory, setNewCategory}) {
+export default function SelectCategory({ newCategory, setNewCategory }) {
 
     const [expenseCategories, setExpenseCategories] = useState([]);
 
@@ -23,16 +23,19 @@ export default function SelectCategory({newCategory, setNewCategory}) {
             console.error(error.message);
         }
     }
- 
+
     return (
-        <label htmlFor="category">Category:
-            <select name="category" id="category" value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
-                {expenseCategories.map((category, index) => {
-                    return (
-                        <option key={index} value={category.toUpperCase()}>{category}</option>
-                    );
-                })}
-            </select>
-        </label>
+        <>
+            {/* <div> */}
+                <label htmlFor="category">Category</label>
+                <select name="category" id="category" value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
+                    {expenseCategories.map((category, index) => {
+                        return (
+                            <option key={index} value={category.toUpperCase()}>{category}</option>
+                        );
+                    })}
+                </select>
+            {/* </div> */}
+        </>
     );
 }

@@ -1,16 +1,23 @@
-import { useState } from "react";
 
-export default function Totals({ checkedExpenses }) {
+export default function Totals({ checkedExpenses, checkedAllocations }) {
 
-    let total = 0;
+    let expenseTotal = 0;
 
     for (let i = 0; i < checkedExpenses.length; i++) {
-        total += checkedExpenses[i].cost;
+        expenseTotal += checkedExpenses[i].amount;
+    }
+
+    let allocationTotal = 0;
+
+    for (let i = 0; i < checkedAllocations.length; i++) {
+        allocationTotal += checkedAllocations[i].amount;
     }
 
     return (
         <div>
-            <h3>Total Expenses: ＄{total}</h3>
+            <h3>Total Allocated: ${allocationTotal}</h3>
+            <h3>Total Expenses: ${expenseTotal}</h3>
+            <h3>Difference: ${allocationTotal - expenseTotal}</h3>
         </div>
     );
 }

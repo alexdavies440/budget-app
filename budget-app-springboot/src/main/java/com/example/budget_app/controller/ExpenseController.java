@@ -18,17 +18,6 @@ public class ExpenseController {
     @Autowired
     private ExpenseRepository expenseRepository;
 
-
-    @GetMapping("/test")
-    public String test() {
-        // Dummy Expense
-        Expense test = new Expense("test", 20.00, Category.MISC);
-
-        expenseRepository.save(test);
-
-        return test.toString();
-    }
-
     @GetMapping("/expense-data")
     public List<Expense> expenseData() {
         return expenseRepository.findAll();
@@ -55,12 +44,12 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/delete-expense/{id}")
-    public void deleteExpense(@PathVariable("id") long expenseId) {
+    public void deleteExpense(@PathVariable long id) {
 
-        Optional<Expense> optExpense = expenseRepository.findById(expenseId);
+        Optional<Expense> optExpense = expenseRepository.findById(id);
 
         if (optExpense.isPresent()) {
-            expenseRepository.deleteById(expenseId);
+            expenseRepository.deleteById(id);
         }
     }
 }

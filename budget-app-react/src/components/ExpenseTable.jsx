@@ -1,56 +1,72 @@
 import { useEffect } from "react";
-import RemoveExpenseButton from "./RemoveExpenseButton";
 import CheckBox from "./CheckBox";
+import RemoveButton from "./RemoveButton";
 
-export default function ExpenseTable({ listData, fetchData, checkedExpenses, setCheckedExpenses }) {
+export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
     // Infinite loop avoided by not calling fetchData here but instead in parent
     useEffect(() => {
-        setCheckedExpenses(listData);
-    }, [listData])
+        setCheckedExpenses(expenseData);
+    }, [expenseData])
 
-    function toTitleCase(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+    function expensePercent(expense) {
+        let expenseTotal = 0;
+        let num = 0;
+        for (let i = 0; i < checkedExpenses.length; i++) {
+            expenseTotal += checkedExpenses[i].amount;
+        }
+
+        if (checkedExpenses.includes(expense)) {
+            num = (expense.amount / expenseTotal) * 10000;
+        }
+        
+        return `${Math.round(num) / 100}%`;
     }
 
     return (
-        <table className="expense-table">
-            <thead>
-                <tr>
-                    <th>Cost</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Checked</th>
-                    <th>Remove</th>
-                </tr>
-            </thead>
+        <div>
+            <h2>Expenses</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cost</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Include</th>
+                        <th>Remove</th>
+                        <th>Percent of Total Expenses</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {listData.map((expense) => {
-                    return (
-                        <tr key={expense.id}>
+                <tbody>
+                    {expenseData.map((expense) => {
+                        return (
+                            <tr key={expense.id}>
 
-                            <td>${expense.cost}</td>
-                            <td>{toTitleCase(expense.description)}</td>
-                            <td>{toTitleCase(expense.category.toLowerCase())}</td>
-                            <td>
-                                <CheckBox
-                                    expense={expense}
-                                    checkedExpenses={checkedExpenses}
-                                    setCheckedExpenses={setCheckedExpenses}
-                                />
-                            </td>
-                            <td>
-                                <RemoveExpenseButton
-                                    id={expense.id}
-                                    fetchData={fetchData}
-                                />
-                            </td>
+                                <td>${expense.amount}</td>
+                                <td>{toTitleCase(expense.description)}</td>
+                                <td>{toTitleCase(expense.category.toLowerCase())}</td>
+                                <td>
+                                    <CheckBox
+                                        item={expense}
+                                        checkedItems={checkedExpenses}
+                                        setCheckedItems={setCheckedExpenses}
+                                    />
+                                </td>
+                                <td>
+                                    <RemoveButton
+                                        deleteUrl={'http://localhost:8080/delete-expense/'}
+                                        id={expense.id}
+                                        fetchData={fetchExpenseData}
+                                    />
+                                </td>
+                                <td>{expensePercent(expense)}</td>
 
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }
