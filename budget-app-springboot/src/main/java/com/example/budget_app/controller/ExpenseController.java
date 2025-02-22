@@ -1,8 +1,10 @@
 package com.example.budget_app.controller;
 
+import com.example.budget_app.dto.ExpenseDTO;
 import com.example.budget_app.model.Category;
 import com.example.budget_app.model.Expense;
 import com.example.budget_app.repository.ExpenseRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +39,14 @@ public class ExpenseController {
     }
 
     @PostMapping("/add-expense")
-    public void addNewExpense(@RequestBody Expense newExpense) {
+    public void addNewExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
+
+        Expense newExpense = new Expense(
+                expenseDTO.getDescription(),
+                expenseDTO.getAmount(),
+                expenseDTO.getCategory()
+        );
+
         expenseRepository.save(newExpense);
     }
 
