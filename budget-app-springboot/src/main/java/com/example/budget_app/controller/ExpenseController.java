@@ -1,14 +1,14 @@
 package com.example.budget_app.controller;
 
+import com.example.budget_app.dto.ExpenseDTO;
 import com.example.budget_app.model.Category;
 import com.example.budget_app.model.Expense;
 import com.example.budget_app.repository.ExpenseRepository;
-import org.apache.tomcat.util.json.JSONParser;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -39,8 +39,29 @@ public class ExpenseController {
     }
 
     @PostMapping("/add-expense")
-    public void addNewExpense(@RequestBody Expense newExpense) {
-        expenseRepository.save(newExpense);
+    public String addNewExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
+
+        String response;
+
+        if (expenseDTO.getDescription().isBlank()) {
+            response = "Description cannot be blank";
+        }
+        else if (expenseDTO.getAmount() < 1) {
+            response = "Amount must be at least $1.00";
+        }
+        else {
+            Expense newExpense = new Expense(
+                    expenseDTO.getDescription(),
+                    expenseDTO.getAmount(),
+                    expenseDTO.getCategory()
+            );
+
+            expenseRepository.save(newExpense);
+
+            response = "Accepted";
+        }
+
+        return response;
     }
 
     @DeleteMapping("/delete-expense/{id}")
