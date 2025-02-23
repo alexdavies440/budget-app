@@ -3,6 +3,7 @@ import RemoveButton from "./RemoveButton";
 import CheckBox from "./CheckBox";
 import EditButton from "./EditButton";
 import EditForm from "./EditForm";
+import AddAllocation from "./AddAllocation";
 
 
 export default function IncomeTable({ toTitleCase, allocationData, fetchAllocationData, checkedAllocations, setCheckedAllocations }) {
@@ -56,7 +57,9 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                                 </td>
                                 <td>
                                     {editMode && <EditForm
-                                        fetchAllocationData={fetchAllocationData}
+                                        ComponentToEdit={AddAllocation}
+                                        url="http://localhost:8080/update-allocation/"
+                                        fetchItemData={fetchAllocationData}
                                         editItem={editItem}
                                         setEditMode={setEditMode}
                                     />}

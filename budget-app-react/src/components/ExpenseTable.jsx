@@ -3,6 +3,7 @@ import CheckBox from "./CheckBox";
 import RemoveButton from "./RemoveButton";
 import EditButton from "./EditButton";
 import EditForm from "./EditForm";
+import AddExpense from "./AddExpense";
 
 export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
@@ -76,7 +77,9 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                 </td>
                                 <td>
                                     {editMode && <EditForm
-                                        fetchAllocationData={fetchAllocationData}
+                                        ComponentToEdit={AddExpense}
+                                        url="http://localhost:8080/update-expense/"
+                                        fetchItemData={fetchExpenseData}
                                         editItem={editItem}
                                         setEditMode={setEditMode}
                                     />}

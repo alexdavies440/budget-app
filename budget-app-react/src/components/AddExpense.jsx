@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SelectCategory from "./SelectCategory";
 
-export default function AddExpense({ fetchExpenseData, defaultItem }) {
+export default function AddExpense({ url, fetchItemData, defaultItem, setEditMode, buttonText }) {
 
     const [description, setDescription] = useState(defaultItem.description);
     const [newCategory, setNewCategory] = useState(defaultItem.category);
@@ -23,7 +23,7 @@ export default function AddExpense({ fetchExpenseData, defaultItem }) {
             setAmmountError(true);
         }
 
-        fetch('http://localhost:8080/add-expense', {
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,8 @@ export default function AddExpense({ fetchExpenseData, defaultItem }) {
             .then(setDescription(""))
             .then(setNewCategory('MISC'))
             .then(setCost(""))
-            .then(fetchExpenseData)
+            .then(fetchItemData)
+            .then(setEditMode(false))
 
     }
 
@@ -54,7 +55,7 @@ export default function AddExpense({ fetchExpenseData, defaultItem }) {
             <label htmlFor="cost">Cost $</label>
             <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
             
-            <button className="add-button">Add</button>
+            <button className="add-button">{buttonText}</button>
 
             {descriptionError && <div>Expense description cannot be blank</div>}
             {ammountError && <div>Cost must be at least $1.00</div>}

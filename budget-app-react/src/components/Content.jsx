@@ -74,12 +74,15 @@ export default function Content() {
     return (
         <div>
             <AddExpense
-                fetchExpenseData={fetchExpenseData}
+                url="http://localhost:8080/add-expense"
+                fetchItemData={fetchExpenseData}
                 defaultItem={defaultExpense} 
+                setEditMode={doNothing}
+                buttonText={"Add"}
             />
             <AddAllocation
                 url="http://localhost:8080/add-allocation"
-                fetchAllocationData={fetchAllocationData}
+                fetchItemData={fetchAllocationData}
                 defaultItem={defaultAllocation}
                 setEditMode={doNothing}
                 buttonText={"Add"}

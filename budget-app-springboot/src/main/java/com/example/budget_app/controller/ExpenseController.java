@@ -1,6 +1,7 @@
 package com.example.budget_app.controller;
 
 import com.example.budget_app.dto.ExpenseDTO;
+import com.example.budget_app.model.Allocation;
 import com.example.budget_app.model.Category;
 import com.example.budget_app.model.Expense;
 import com.example.budget_app.repository.ExpenseRepository;
@@ -71,6 +72,22 @@ public class ExpenseController {
 
         if (optExpense.isPresent()) {
             expenseRepository.deleteById(id);
+        }
+    }
+
+    @PostMapping("/update-expense/{id}")
+    public void updateExpense(@PathVariable long id, @RequestBody Expense updatedExpense) {
+
+        Optional<Expense> optExpense = expenseRepository.findById(id);
+
+        if (optExpense.isPresent()) {
+
+            Expense existingExpense = optExpense.get();
+            existingExpense.setDescription(updatedExpense.getDescription());
+            existingExpense.setAmount(updatedExpense.getAmount());
+            existingExpense.setCategory(updatedExpense.getCategory());
+
+            expenseRepository.save(existingExpense);
         }
     }
 }

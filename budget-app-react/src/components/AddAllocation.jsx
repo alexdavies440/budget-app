@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AddAllocation({ url, fetchAllocationData, defaultItem, setEditMode, buttonText}) {
+export default function AddAllocation({ url, fetchItemData, defaultItem, setEditMode, buttonText}) {
 
     const [allocationDescription, setAllocationDescription] = useState(defaultItem.description);
     const [allocationAmount, setAllocationAmount] = useState(defaultItem.amount);
@@ -34,7 +34,7 @@ export default function AddAllocation({ url, fetchAllocationData, defaultItem, s
         })
             .then(setAllocationDescription(""))
             .then(setAllocationAmount(""))
-            .then(fetchAllocationData)
+            .then(fetchItemData)
             .then(setEditMode(false))
 
     }
