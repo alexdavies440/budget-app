@@ -42,7 +42,7 @@ export default function EditForm({ fetchAllocationData, editItem, setEditMode}) 
 
     return (
         <div className="edit-form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="edit-form-inner">
             <label htmlFor="allocation-description">Allocation</label>
             <input type="text" name="allocation-description" value={allocationDescription} onChange={(e) => setAllocationDescription(e.target.value)} placeholder="Add a description..." />
            
