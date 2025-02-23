@@ -9,11 +9,9 @@ import AllocationTable from "./AllocationTable";
 export default function Content() {
 
     const [expenseData, setExpenseData] = useState([]);
-
     const [allocationData, setAllocationData] = useState([]);
 
     const [checkedExpenses, setCheckedExpenses] = useState([]);
-
     const [checkedAllocations, setCheckedAllocations] = useState([]);
 
     useEffect(() => {
@@ -47,7 +45,6 @@ export default function Content() {
             }
 
             const json = await response.json();
-            console.log(json);
             setAllocationData(json);
 
         } catch (error) {

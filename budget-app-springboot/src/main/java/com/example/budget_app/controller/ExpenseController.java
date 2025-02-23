@@ -39,15 +39,29 @@ public class ExpenseController {
     }
 
     @PostMapping("/add-expense")
-    public void addNewExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
+    public String addNewExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
 
-        Expense newExpense = new Expense(
-                expenseDTO.getDescription(),
-                expenseDTO.getAmount(),
-                expenseDTO.getCategory()
-        );
+        String response;
 
-        expenseRepository.save(newExpense);
+        if (expenseDTO.getDescription().isBlank()) {
+            response = "Description cannot be blank";
+        }
+        else if (expenseDTO.getAmount() < 1) {
+            response = "Amount must be at least $1.00";
+        }
+        else {
+            Expense newExpense = new Expense(
+                    expenseDTO.getDescription(),
+                    expenseDTO.getAmount(),
+                    expenseDTO.getCategory()
+            );
+
+            expenseRepository.save(newExpense);
+
+            response = "Accepted";
+        }
+
+        return response;
     }
 
     @DeleteMapping("/delete-expense/{id}")
