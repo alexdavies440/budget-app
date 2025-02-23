@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import RemoveButton from "./RemoveButton";
 import CheckBox from "./CheckBox";
 
@@ -8,6 +8,8 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
     useEffect(() => {
         setCheckedAllocations(allocationData);
     }, [allocationData])
+
+    const [editMode, setEditMode] = useState(false);
 
     return (
         <div>
@@ -41,6 +43,9 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                                         id={allocation.id}
                                         fetchData={fetchAllocationData}
                                     />
+                                </td>
+                                <td>
+                                    <button>Edit</button>
                                 </td>
                             </tr>
                         );

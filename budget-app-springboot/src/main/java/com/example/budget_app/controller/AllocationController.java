@@ -65,4 +65,17 @@ public class AllocationController {
             allocationRepository.deleteById(id);
         }
     }
+
+    @PostMapping("/update-allocation/{id}")
+    public String updateAllocation(@PathVariable long id, @RequestBody Allocation updatedAllocation) {
+        Optional<Allocation> optAllocation = allocationRepository.findById(id);
+
+        if (optAllocation.isPresent()) {
+            Allocation existingAllocation = optAllocation.get();
+            existingAllocation.setDescription(updatedAllocation.getDescription());
+            existingAllocation.setAmount(updatedAllocation.getAmount());
+        }
+
+        return "Update successful";
+    }
 }

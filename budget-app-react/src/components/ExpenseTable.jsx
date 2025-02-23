@@ -62,6 +62,9 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                 </td>
                                 <td>{expensePercent(expense)}</td>
 
+                                <td>
+                                    <button>Edit</button>
+                                </td>
                             </tr>
                         );
                     })}
