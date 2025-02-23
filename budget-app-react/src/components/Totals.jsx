@@ -13,11 +13,13 @@ export default function Totals({ checkedExpenses, checkedAllocations }) {
         allocationTotal += checkedAllocations[i].amount;
     }
 
+    let difference = Math.round((allocationTotal - expenseTotal) * 100) / 100;
+
     return (
         <div>
             <h3>Total Allocated: ${allocationTotal}</h3>
             <h3>Total Expenses: ${expenseTotal}</h3>
-            <h3>Difference: ${allocationTotal - expenseTotal}</h3>
+            <h3>Difference: ${difference}</h3>
         </div>
     );
 }
