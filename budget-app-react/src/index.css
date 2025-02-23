@@ -118,7 +118,7 @@ button:focus-visible {
   height: 100%;
   overflow: auto;
   background-color: rgba(36, 36, 36, 0.5);
-  backdrop-filter: blur(5px);
+  /* backdrop-filter: blur(5px); */
 }
 
 .edit-form-inner {
@@ -130,5 +130,5 @@ button:focus-visible {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.478);
-  width: 70%;
+  width: 80%;
 }

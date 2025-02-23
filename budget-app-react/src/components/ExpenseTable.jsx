@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
 import RemoveButton from "./RemoveButton";
 import EditButton from "./EditButton";
-import EditForm from "./EditForm";
-import AddExpense from "./AddExpense";
+import EditExpense from "./EditExpense";
 
 export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
@@ -76,10 +75,8 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                     />
                                 </td>
                                 <td>
-                                    {editMode && <EditForm
-                                        ComponentToEdit={AddExpense}
-                                        url="http://localhost:8080/update-expense/"
-                                        fetchItemData={fetchExpenseData}
+                                    {editMode && <EditExpense
+                                        fetchExpenseData={fetchExpenseData}
                                         editItem={editItem}
                                         setEditMode={setEditMode}
                                     />}

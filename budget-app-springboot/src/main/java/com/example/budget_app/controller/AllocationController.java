@@ -67,19 +67,30 @@ public class AllocationController {
     }
 
     @PostMapping("/update-allocation/{id}")
-    public void updateAllocation(@PathVariable long id, @RequestBody Allocation updatedAllocation) {
+    public String updateAllocation(@PathVariable long id, @Valid @RequestBody AllocationDTO allocationDTO) {
 
-        Optional<Allocation> optAllocation = allocationRepository.findById(id);
+        String response;
 
-        if (optAllocation.isPresent()) {
+        if (allocationDTO.getDescription().isBlank()) {
+            response = "Description cannot be blank";
+        }
+        else if (allocationDTO.getAmount() < 1) {
+            response = "Amount must be at least $1.00";
+        }
+        else {
+            Optional<Allocation> optAllocation = allocationRepository.findById(id);
 
-            Allocation existingAllocation = optAllocation.get();
-            existingAllocation.setDescription(updatedAllocation.getDescription());
-            existingAllocation.setAmount(updatedAllocation.getAmount());
+            if (optAllocation.isPresent()) {
 
-            allocationRepository.save(existingAllocation);
+                Allocation existingAllocation = optAllocation.get();
+                existingAllocation.setDescription(allocationDTO.getDescription());
+                existingAllocation.setAmount(allocationDTO.getAmount());
+
+                allocationRepository.save(existingAllocation);
+            }
+            response = "Update successful";
         }
 
-//        return "Update successful";
+        return response;
     }
 }

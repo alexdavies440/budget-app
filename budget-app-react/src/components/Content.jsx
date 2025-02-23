@@ -28,7 +28,7 @@ export default function Content() {
             }
 
             const json = await response.json();
-            console.log(json);
+            // console.log(json);
             setExpenseData(json);
 
         } catch (error) {
@@ -75,17 +75,11 @@ export default function Content() {
         <div>
             <AddExpense
                 url="http://localhost:8080/add-expense"
-                fetchItemData={fetchExpenseData}
-                defaultItem={defaultExpense} 
-                setEditMode={doNothing}
-                buttonText={"Add"}
+                fetchExpenseData={fetchExpenseData}
             />
             <AddAllocation
                 url="http://localhost:8080/add-allocation"
-                fetchItemData={fetchAllocationData}
-                defaultItem={defaultAllocation}
-                setEditMode={doNothing}
-                buttonText={"Add"}
+                fetchAllocationData={fetchAllocationData}
             />
             <ExpenseTable
                 toTitleCase={toTitleCase}

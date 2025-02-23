@@ -1,13 +1,12 @@
 import { useState } from "react";
 
-export default function AddIncome({ fetchAllocationData }) {
+export default function EditAllocationForm({ fetchAllocationData, editItem, setEditMode}) {
 
-    const [allocationDescription, setAllocationDescription] = useState("");
-    const [allocationAmount, setAllocationAmount] = useState("");
+    const [allocationDescription, setAllocationDescription] = useState(editItem.description);
+    const [allocationAmount, setAllocationAmount] = useState(editItem.amount);
 
     const [descriptionError, setDescriptionError] = useState(false);
     const [ammountError, setAmmountError] = useState(false);
-
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -22,7 +21,9 @@ export default function AddIncome({ fetchAllocationData }) {
             setAmmountError(true);
         }
 
-        fetch('http://localhost:8080/add-allocation', {
+        const url = 'http://localhost:8080/update-allocation/';
+
+        fetch(url + editItem.id, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,21 +36,24 @@ export default function AddIncome({ fetchAllocationData }) {
             .then(setAllocationDescription(""))
             .then(setAllocationAmount(""))
             .then(fetchAllocationData)
+            .then(setEditMode(false))
 
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div className="edit-form">
+            <form onSubmit={handleSubmit} className="edit-form-inner">
             <label htmlFor="allocation-description">Allocation</label>
             <input type="text" name="allocation-description" value={allocationDescription} onChange={(e) => setAllocationDescription(e.target.value)} placeholder="Add a description..." />
            
             <label htmlFor="allocation-amount">Amount</label>
             <input type="number" name="allocation-amount" value={allocationAmount} onChange={(e) => setAllocationAmount(e.target.value)} />
           
-            <button className="add-button">Add</button>
+            <button className="add-button">Save</button>
 
             {descriptionError && <div>Allocation description cannot be blank</div>}
             {ammountError && <div>Amount must be least $1.00</div>}
-        </form>
+            </form>
+        </div>
     );
 }
