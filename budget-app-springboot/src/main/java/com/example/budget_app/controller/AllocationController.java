@@ -67,15 +67,19 @@ public class AllocationController {
     }
 
     @PostMapping("/update-allocation/{id}")
-    public String updateAllocation(@PathVariable long id, @RequestBody Allocation updatedAllocation) {
+    public void updateAllocation(@PathVariable long id, @RequestBody Allocation updatedAllocation) {
+
         Optional<Allocation> optAllocation = allocationRepository.findById(id);
 
         if (optAllocation.isPresent()) {
+
             Allocation existingAllocation = optAllocation.get();
             existingAllocation.setDescription(updatedAllocation.getDescription());
             existingAllocation.setAmount(updatedAllocation.getAmount());
+
+            allocationRepository.save(existingAllocation);
         }
 
-        return "Update successful";
+//        return "Update successful";
     }
 }

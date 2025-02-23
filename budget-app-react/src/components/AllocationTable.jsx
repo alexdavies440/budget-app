@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import RemoveButton from "./RemoveButton";
 import CheckBox from "./CheckBox";
+import EditButton from "./EditButton";
+import EditForm from "./EditForm";
 
 
 export default function IncomeTable({ toTitleCase, allocationData, fetchAllocationData, checkedAllocations, setCheckedAllocations }) {
@@ -10,6 +12,7 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
     }, [allocationData])
 
     const [editMode, setEditMode] = useState(false);
+    const [editItem, setEditItem] = useState(null);
 
     return (
         <div>
@@ -45,7 +48,18 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                                     />
                                 </td>
                                 <td>
-                                    <button>Edit</button>
+                                    <EditButton
+                                        item={allocation}
+                                        setEditItem={setEditItem}
+                                        setEditMode={setEditMode}
+                                    />
+                                </td>
+                                <td>
+                                    {editMode && <EditForm
+                                        fetchAllocationData={fetchAllocationData}
+                                        editItem={editItem}
+                                        setEditMode={setEditMode}
+                                    />}
                                 </td>
                             </tr>
                         );
