@@ -1,11 +1,11 @@
 import { useState } from "react";
 import SelectCategory from "./SelectCategory";
 
-export default function AddExpense({ fetchExpenseData }) {
+export default function AddExpense({ fetchExpenseData, defaultItem }) {
 
-    const [description, setDescription] = useState("");
-    const [newCategory, setNewCategory] = useState('MISC');
-    const [cost, setCost] = useState("");
+    const [description, setDescription] = useState(defaultItem.description);
+    const [newCategory, setNewCategory] = useState(defaultItem.category);
+    const [cost, setCost] = useState(defaultItem.amount);
 
     const [descriptionError, setDescriptionError] = useState(false);
     const [ammountError, setAmmountError] = useState(false);

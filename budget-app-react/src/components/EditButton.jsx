@@ -1,13 +1,13 @@
-import { useState } from "react";
+
 
 export default function EditButton({ item, setEditItem, setEditMode }) {
 
-    function handleEdit(editItem) {
-        setEditItem(editItem);
+    function handleEdit() {
+        setEditItem(item);
         setEditMode(true);
     }
 
     return (
-        <button onClick={() => handleEdit(item)}>Edit</button>
+        <button onClick={handleEdit}>Edit</button>
     )
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export default function AddIncome({ fetchAllocationData }) {
+export default function AddAllocation({ url, fetchAllocationData, defaultItem, setEditMode, buttonText}) {
 
-    const [allocationDescription, setAllocationDescription] = useState("");
-    const [allocationAmount, setAllocationAmount] = useState("");
+    const [allocationDescription, setAllocationDescription] = useState(defaultItem.description);
+    const [allocationAmount, setAllocationAmount] = useState(defaultItem.amount);
 
     const [descriptionError, setDescriptionError] = useState(false);
     const [ammountError, setAmmountError] = useState(false);
@@ -22,7 +22,7 @@ export default function AddIncome({ fetchAllocationData }) {
             setAmmountError(true);
         }
 
-        fetch('http://localhost:8080/add-allocation', {
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,6 +35,7 @@ export default function AddIncome({ fetchAllocationData }) {
             .then(setAllocationDescription(""))
             .then(setAllocationAmount(""))
             .then(fetchAllocationData)
+            .then(setEditMode(false))
 
     }
 
@@ -46,7 +47,7 @@ export default function AddIncome({ fetchAllocationData }) {
             <label htmlFor="allocation-amount">Amount</label>
             <input type="number" name="allocation-amount" value={allocationAmount} onChange={(e) => setAllocationAmount(e.target.value)} />
           
-            <button className="add-button">Add</button>
+            <button className="add-button">{buttonText}</button>
 
             {descriptionError && <div>Allocation description cannot be blank</div>}
             {ammountError && <div>Amount must be least $1.00</div>}

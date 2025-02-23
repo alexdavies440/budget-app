@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
 import RemoveButton from "./RemoveButton";
+import EditButton from "./EditButton";
+import EditForm from "./EditForm";
 
 export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
@@ -8,6 +10,9 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
     useEffect(() => {
         setCheckedExpenses(expenseData);
     }, [expenseData])
+
+    const [editMode, setEditMode] = useState(false);
+    const [editItem, setEditItem] = useState(null);
 
     function expensePercent(expense) {
         let expenseTotal = 0;
@@ -19,7 +24,7 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
         if (checkedExpenses.includes(expense)) {
             num = (expense.amount / expenseTotal) * 10000;
         }
-        
+
         return `${Math.round(num) / 100}%`;
     }
 
@@ -63,7 +68,18 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                 <td>{expensePercent(expense)}</td>
 
                                 <td>
-                                    <button>Edit</button>
+                                    <EditButton
+                                        item={expense}
+                                        setEditItem={setEditItem}
+                                        setEditMode={setEditMode}
+                                    />
+                                </td>
+                                <td>
+                                    {editMode && <EditForm
+                                        fetchAllocationData={fetchAllocationData}
+                                        editItem={editItem}
+                                        setEditMode={setEditMode}
+                                    />}
                                 </td>
                             </tr>
                         );

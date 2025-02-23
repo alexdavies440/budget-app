@@ -56,10 +56,34 @@ export default function Content() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    function doNothing() {
+        // setEditMode not applicable here
+    }
+
+    const defaultExpense = {
+        description: "",
+        amount: "",
+        category: 'MISC',
+    }
+
+    const defaultAllocation = {
+        description: "",
+        amount: ""
+    };
+
     return (
         <div>
-            <AddExpense fetchExpenseData={fetchExpenseData} />
-            <AddAllocation fetchAllocationData={fetchAllocationData} />
+            <AddExpense
+                fetchExpenseData={fetchExpenseData}
+                defaultItem={defaultExpense} 
+            />
+            <AddAllocation
+                url="http://localhost:8080/add-allocation"
+                fetchAllocationData={fetchAllocationData}
+                defaultItem={defaultAllocation}
+                setEditMode={doNothing}
+                buttonText={"Add"}
+            />
             <ExpenseTable
                 toTitleCase={toTitleCase}
                 expenseData={expenseData}
@@ -68,7 +92,7 @@ export default function Content() {
                 setCheckedExpenses={setCheckedExpenses}
             />
             <br />
-            <AllocationTable 
+            <AllocationTable
                 toTitleCase={toTitleCase}
                 allocationData={allocationData}
                 fetchAllocationData={fetchAllocationData}
