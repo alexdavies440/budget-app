@@ -76,18 +76,31 @@ public class ExpenseController {
     }
 
     @PostMapping("/update-expense/{id}")
-    public void updateExpense(@PathVariable long id, @RequestBody Expense updatedExpense) {
+    public String updateExpense(@PathVariable long id, @Valid @RequestBody ExpenseDTO expenseDTO) {
 
-        Optional<Expense> optExpense = expenseRepository.findById(id);
+        String response;
 
-        if (optExpense.isPresent()) {
-
-            Expense existingExpense = optExpense.get();
-            existingExpense.setDescription(updatedExpense.getDescription());
-            existingExpense.setAmount(updatedExpense.getAmount());
-            existingExpense.setCategory(updatedExpense.getCategory());
-
-            expenseRepository.save(existingExpense);
+        if (expenseDTO.getDescription().isBlank()) {
+            response = "Description cannot be blank";
         }
+        else if (expenseDTO.getAmount() < 1) {
+            response = "Amount must be at least $1.00";
+        }
+        else {
+            Optional<Expense> optExpense = expenseRepository.findById(id);
+
+            if (optExpense.isPresent()) {
+
+                Expense existingExpense = optExpense.get();
+                existingExpense.setDescription(expenseDTO.getDescription());
+                existingExpense.setAmount(expenseDTO.getAmount());
+                existingExpense.setCategory(expenseDTO.getCategory());
+
+                expenseRepository.save(existingExpense);
+            }
+            return "Accepted";
+        }
+
+        return response;
     }
 }

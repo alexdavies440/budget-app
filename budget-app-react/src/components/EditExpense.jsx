@@ -7,41 +7,43 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
     const [newCategory, setNewCategory] = useState(editItem.category);
     const [cost, setCost] = useState(editItem.amount);
 
-    const [descriptionError, setDescriptionError] = useState(false);
-    const [ammountError, setAmmountError] = useState(false);
+    const [editDescriptionError, setEditDescriptionError] = useState(false);
+    const [editAmmountError, setEditAmmountError] = useState(false);
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        setDescriptionError(false);
-        setAmmountError(false);
+        setEditDescriptionError(false);
+        setEditAmmountError(false);
 
         if (description === "") {
-            setDescriptionError(true);
+            setEditDescriptionError(true);
         }
-        if (cost < 1 || isNaN(cost)) {
-            setAmmountError(true);
+        else if (cost < 1 || isNaN(cost)) {
+            setEditAmmountError(true);
         }
+        else {
 
-        const url = 'http://localhost:8080/update-expense/';
+            const url = 'http://localhost:8080/update-expense/';
 
-        fetch(url + editItem.id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                description: description,
-                amount: cost,
-                category: newCategory,
-            }),
-        })
-            .then(setDescription(""))
-            .then(setNewCategory('MISC'))
-            .then(setCost(""))
-            .then(fetchExpenseData)
-            .then(setEditMode(false))
+            fetch(url + editItem.id, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    description: description,
+                    amount: cost,
+                    category: newCategory,
+                }),
+            })
+                .then(setDescription(""))
+                .then(setNewCategory('MISC'))
+                .then(setCost(""))
+                .then(fetchExpenseData)
+                .then(setEditMode(false))
 
+        }
     }
 
     return (
@@ -60,8 +62,8 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
 
                 <button className="add-button">Save</button>
 
-                {descriptionError && <div>Expense description cannot be blank</div>}
-                {ammountError && <div>Cost must be at least $1.00</div>}
+                {editDescriptionError && <div>Expense description cannot be blank</div>}
+                {editAmmountError && <div>Cost must be at least $1.00</div>}
             </form>
         </div>
     );

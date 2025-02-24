@@ -56,21 +56,6 @@ export default function Content() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    function doNothing() {
-        // setEditMode not applicable here
-    }
-
-    const defaultExpense = {
-        description: "",
-        amount: "",
-        category: 'MISC',
-    }
-
-    const defaultAllocation = {
-        description: "",
-        amount: ""
-    };
-
     return (
         <div>
             <AddExpense
