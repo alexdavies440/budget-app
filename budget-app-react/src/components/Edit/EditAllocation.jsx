@@ -44,12 +44,23 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
 
     return (
         <div className="edit-form">
-            <form onSubmit={handleSubmit} className="edit-form-inner">
+            <form onSubmit={handleSubmit} className="edit-form-inner inner-allocation">
                 <label htmlFor="allocation-description">Allocation</label>
-                <input type="text" name="allocation-description" value={allocationDescription} onChange={(e) => setAllocationDescription(e.target.value)} placeholder="Add a description..." />
+                <input
+                    type="text"
+                    name="allocation-description"
+                    value={allocationDescription}
+                    onChange={(e) => setAllocationDescription(e.target.value)}
+                    placeholder="Add a description..."
+                />
 
                 <label htmlFor="allocation-amount">Amount</label>
-                <input type="number" name="allocation-amount" value={allocationAmount} onChange={(e) => setAllocationAmount(e.target.value)} />
+                <input
+                    type="number"
+                    name="allocation-amount"
+                    value={allocationAmount}
+                    onChange={(e) => setAllocationAmount(e.target.value)}
+                />
 
                 <button className="add-button">Save</button>
 

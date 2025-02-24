@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
 import RemoveButton from "./RemoveButton";
-import EditButton from "./EditButton";
-import EditExpense from "./EditExpense";
+import EditButton from "./Edit/EditButton";
+import EditExpense from "./Edit/EditExpense";
 
-export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
+export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 
     // Infinite loop avoided by not calling fetchData here but instead in parent
     useEffect(() => {
@@ -47,7 +47,6 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                     {expenseData.map((expense) => {
                         return (
                             <tr key={expense.id}>
-
                                 <td>${expense.amount}</td>
                                 <td>{toTitleCase(expense.description)}</td>
                                 <td>{toTitleCase(expense.category.toLowerCase())}</td>
@@ -60,13 +59,12 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                 </td>
                                 <td>
                                     <RemoveButton
-                                        deleteUrl={'http://localhost:8080/delete-expense/'}
+                                        deleteUrl='http://localhost:8080/delete-expense/'
                                         id={expense.id}
                                         fetchData={fetchExpenseData}
                                     />
                                 </td>
                                 <td>{expensePercent(expense)}</td>
-
                                 <td>
                                     <EditButton
                                         item={expense}
@@ -75,7 +73,8 @@ export default function ExpenseTable({ toTitleCase, expenseData, fetchExpenseDat
                                     />
                                 </td>
                                 <td>
-                                    {editMode && <EditExpense
+                                    {/* Ensures that only one layer is rendered, otherwise will render a layer for every item in the array... */}
+                                    {editMode && editItem === expense && <EditExpense
                                         fetchExpenseData={fetchExpenseData}
                                         editItem={editItem}
                                         setEditMode={setEditMode}

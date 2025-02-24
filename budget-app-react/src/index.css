@@ -111,24 +111,32 @@ button:focus-visible {
 
 .edit-form {
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(36, 36, 36, 0.5);
-  /* backdrop-filter: blur(5px); */
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
 }
 
 .edit-form-inner {
   background-color: rgb(36, 36, 36);
+  box-shadow: 0 0 5px black;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px;
+  padding: 40px;
   border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.478);
-  width: 80%;
 }
+
+.inner-expense {
+  width: 95%;
+}
+
+.inner-allocation {
+  width: 70%;
+}
+

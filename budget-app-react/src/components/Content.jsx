@@ -68,12 +68,12 @@ export default function Content() {
             />
             <ExpenseTable
                 toTitleCase={toTitleCase}
+                setExpenseData={setExpenseData}
                 expenseData={expenseData}
                 fetchExpenseData={fetchExpenseData}
                 checkedExpenses={checkedExpenses}
                 setCheckedExpenses={setCheckedExpenses}
             />
-            <br />
             <AllocationTable
                 toTitleCase={toTitleCase}
                 allocationData={allocationData}

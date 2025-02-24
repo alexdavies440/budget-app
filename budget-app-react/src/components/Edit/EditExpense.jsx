@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SelectCategory from "./SelectCategory";
+import SelectCategory from "../SelectCategory";
 
 export default function EditExpense({ fetchExpenseData, editItem, setEditMode }) {
 
@@ -48,9 +48,15 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
 
     return (
         <div className="edit-form">
-            <form onSubmit={handleSubmit} className="edit-form-inner">
+            <form onSubmit={handleSubmit} className="edit-form-inner inner-expense">
                 <label htmlFor="description">Expense</label>
-                <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Add a description..." />
+                <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Add a description..."
+                />
 
                 <SelectCategory
                     newCategory={newCategory}
@@ -58,7 +64,12 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
                 />
 
                 <label htmlFor="cost">Cost $</label>
-                <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
+                <input
+                    type="number"
+                    name="cost"
+                    value={cost}
+                    onChange={(e) => setCost(e.target.value)}
+                />
 
                 <button className="add-button">Save</button>
 

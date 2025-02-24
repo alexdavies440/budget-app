@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import RemoveButton from "./RemoveButton";
 import CheckBox from "./CheckBox";
-import EditButton from "./EditButton";
-import EditAllocation from "./EditAllocation";
+import EditButton from "./Edit/EditButton";
+import EditAllocation from "./Edit/EditAllocation";
 
 export default function IncomeTable({ toTitleCase, allocationData, fetchAllocationData, checkedAllocations, setCheckedAllocations }) {
 
@@ -24,8 +24,8 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                         <th>Include</th>
                         <th>Remove</th>
                     </tr>
-
                 </thead>
+
                 <tbody>
                     {allocationData.map((allocation) => {
                         return (
@@ -54,7 +54,8 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                                     />
                                 </td>
                                 <td>
-                                    {editMode && <EditAllocation
+                                    {/* Ensures that only one layer is rendered, otherwise will render a layer for every item in the array... */}
+                                    {editMode && editItem === allocation && <EditAllocation
                                         fetchAllocationData={fetchAllocationData}
                                         editItem={editItem}
                                         setEditMode={setEditMode}
