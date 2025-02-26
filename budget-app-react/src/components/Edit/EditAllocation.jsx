@@ -45,9 +45,6 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
 
     return (
         <div className="edit-form">
-
-            <CancelButton setEditMode={setEditMode} />
-
             <form onSubmit={handleSubmit} className="edit-form-inner inner-allocation">
                 <label htmlFor="allocation-description">Allocation</label>
                 <input
@@ -65,8 +62,10 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
                     value={allocationAmount}
                     onChange={(e) => setAllocationAmount(e.target.value)}
                 />
-
+                
+                <br />
                 <button className="add-button">Save</button>
+                <CancelButton setEditMode={setEditMode} />
 
                 {descriptionError && <div>Allocation description cannot be blank</div>}
                 {ammountError && <div>Amount must be least $1.00</div>}

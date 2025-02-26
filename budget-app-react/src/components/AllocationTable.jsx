@@ -22,7 +22,6 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                         <th>Allocation</th>
                         <th>Source</th>
                         <th>Include</th>
-                        <th>Remove</th>
                     </tr>
                 </thead>
 
@@ -40,17 +39,17 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
                                     />
                                 </td>
                                 <td>
-                                    <RemoveButton
-                                        deleteUrl={'http://localhost:8080/delete-allocation/'}
-                                        id={allocation.id}
-                                        fetchData={fetchAllocationData}
-                                    />
-                                </td>
-                                <td>
                                     <EditButton
                                         item={allocation}
                                         setEditItem={setEditItem}
                                         setEditMode={setEditMode}
+                                    />
+                                </td>
+                                <td>
+                                    <RemoveButton
+                                        deleteUrl={'http://localhost:8080/delete-allocation/'}
+                                        id={allocation.id}
+                                        fetchData={fetchAllocationData}
                                     />
                                 </td>
                                 <td>

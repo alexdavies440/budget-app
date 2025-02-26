@@ -38,8 +38,7 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
                         <th>Description</th>
                         <th>Category</th>
                         <th>Include</th>
-                        <th>Remove</th>
-                        <th>Percent of Total Expenses</th>
+                        <th>% of Total</th>
                     </tr>
                 </thead>
 
@@ -57,19 +56,19 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
                                         setCheckedItems={setCheckedExpenses}
                                     />
                                 </td>
-                                <td>
-                                    <RemoveButton
-                                        deleteUrl='http://localhost:8080/delete-expense/'
-                                        id={expense.id}
-                                        fetchData={fetchExpenseData}
-                                    />
-                                </td>
                                 <td>{expensePercent(expense)}</td>
                                 <td>
                                     <EditButton
                                         item={expense}
                                         setEditItem={setEditItem}
                                         setEditMode={setEditMode}
+                                    />
+                                </td>
+                                <td>
+                                    <RemoveButton
+                                        deleteUrl='http://localhost:8080/delete-expense/'
+                                        id={expense.id}
+                                        fetchData={fetchExpenseData}
                                     />
                                 </td>
                                 <td>

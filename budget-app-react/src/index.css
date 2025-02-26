@@ -30,18 +30,17 @@ input,
 select {
   border-radius: 8px;
   border: 1px solid transparent;
-  margin-right: 8px;
-  margin-left: 8px;
+  margin: 8px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #3b3b3b;
-  box-shadow: inset 0 0 2px #646cff;
+  box-shadow: inset 0 0 2px #00d790;
   transition: border-color 0.25s;
 }
 
 input:hover {
-  border-color: #646cff;
+  border-color: #64ffcb;
 }
 
 input[type="text"] {
@@ -58,21 +57,10 @@ input[type="number"] {
   width: 150px;
 }
 
-th,
-td {
-  padding-right: 100px;
-  text-align: left;
-}
-
-td {
-  text-align: left;
-
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  font-size: 1em;
+  font-size: 0.9em;
   padding: 6px;
   font-weight: 500;
   font-family: inherit;
@@ -82,7 +70,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: #64ffcb;
 }
 
 button:focus,
@@ -90,13 +78,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.add-button {
-  font-size: 0.9em;
-  width: 80px;
+.add-button, .cancel-button {
+  margin-right: 6px;
 }
 
 .remove-button {
-  font-size: 0.9em;
   padding: 1px;
   margin: 5px;
   height: 40px;
@@ -133,15 +119,29 @@ button:focus-visible {
 }
 
 .inner-expense {
-  width: 1330px;
+  width: 1250px;
 }
 
 .inner-allocation {
   width: 70%;
 }
 
-.cancel-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+table {
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #64ffcb;
+  transition: ease 0.75s;
+}
+
+tbody tr:hover {
+  background-color: #3d3d3d;
+
+}
+
+td, th {
+  text-align: left;
+  padding: 20px;
+  padding-right: 70px;
 }

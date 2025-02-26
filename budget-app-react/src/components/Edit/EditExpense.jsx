@@ -49,9 +49,6 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
 
     return (
         <div className="edit-form">
-
-            <CancelButton setEditMode={setEditMode} />
-
             <form onSubmit={handleSubmit} className="edit-form-inner inner-expense">
                 <label htmlFor="description">Expense</label>
                 <input
@@ -74,8 +71,10 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
                     value={cost}
                     onChange={(e) => setCost(e.target.value)}
                 />
-
+                
+                <br />
                 <button className="add-button">Save</button>
+                <CancelButton setEditMode={setEditMode} />
 
                 {editDescriptionError && <div>Expense description cannot be blank</div>}
                 {editAmmountError && <div>Cost must be at least $1.00</div>}
