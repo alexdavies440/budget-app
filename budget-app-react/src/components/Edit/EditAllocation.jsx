@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CancelButton from "../CancelButton";
 
 export default function EditAllocationForm({ fetchAllocationData, editItem, setEditMode }) {
 
@@ -44,6 +45,9 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
 
     return (
         <div className="edit-form">
+
+            <CancelButton setEditMode={setEditMode} />
+
             <form onSubmit={handleSubmit} className="edit-form-inner inner-allocation">
                 <label htmlFor="allocation-description">Allocation</label>
                 <input

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SelectCategory from "../SelectCategory";
+import CancelButton from "../CancelButton";
 
 export default function EditExpense({ fetchExpenseData, editItem, setEditMode }) {
 
@@ -48,6 +49,9 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
 
     return (
         <div className="edit-form">
+
+            <CancelButton setEditMode={setEditMode} />
+
             <form onSubmit={handleSubmit} className="edit-form-inner inner-expense">
                 <label htmlFor="description">Expense</label>
                 <input

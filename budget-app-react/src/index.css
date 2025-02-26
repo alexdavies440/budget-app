@@ -133,10 +133,15 @@ button:focus-visible {
 }
 
 .inner-expense {
-  width: 95%;
+  width: 1330px;
 }
 
 .inner-allocation {
   width: 70%;
 }
 
+.cancel-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
