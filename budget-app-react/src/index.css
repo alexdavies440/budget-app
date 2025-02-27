@@ -28,6 +28,7 @@ label {
 
 input,
 select {
+  outline: none;
   border-radius: 8px;
   border: 1px solid transparent;
   margin: 8px;
@@ -39,8 +40,16 @@ select {
   transition: border-color 0.25s;
 }
 
+input:focus, select:focus {
+  border: 2px solid #00d790;
+}
+
 input:hover {
   border-color: #64ffcb;
+}
+
+input:active {
+  border: 3px #64ffcb;
 }
 
 input[type="text"] {
