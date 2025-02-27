@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import AddExpense from "./AddExpense";
 import Totals from "./Totals";
 import ExpenseTable from "./ExpenseTable";
-import AddAllocation from "./AddAllocation";
 import AllocationTable from "./AllocationTable";
 
 
@@ -28,7 +26,6 @@ export default function Content() {
             }
 
             const json = await response.json();
-            // console.log(json);
             setExpenseData(json);
 
         } catch (error) {
@@ -58,14 +55,6 @@ export default function Content() {
 
     return (
         <div>
-            {/* <AddExpense
-                url="http://localhost:8080/add-expense"
-                fetchExpenseData={fetchExpenseData}
-            /> */}
-            {/* <AddAllocation
-                url="http://localhost:8080/add-allocation"
-                fetchAllocationData={fetchAllocationData}
-            /> */}
             <ExpenseTable
                 toTitleCase={toTitleCase}
                 setExpenseData={setExpenseData}

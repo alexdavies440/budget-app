@@ -2,6 +2,6 @@
 export default function AddButton({ setAddMode }) {
 
     return (
-        <button onClick={() => setAddMode(true)}>New</button>
+        <button className="new-button" onClick={() => setAddMode(true)}>New</button>
     )
 }

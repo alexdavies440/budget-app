@@ -37,8 +37,11 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
 
     return (
         <div>
-            <h2>Expenses</h2>
-            <AddButton setAddMode={setAddMode}/>
+            <div className="table-header">
+                <h2>Expenses</h2>
+                <AddButton setAddMode={setAddMode} />
+            </div>
+
             {addMode && <AddExpense
                 fetchExpenseData={fetchExpenseData}
                 setAddMode={setAddMode}

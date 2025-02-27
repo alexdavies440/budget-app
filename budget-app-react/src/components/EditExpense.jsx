@@ -57,6 +57,7 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Add a description..."
+                    autoFocus
                 />
 
                 <SelectCategory

@@ -50,6 +50,7 @@ export default function AddAllocation({ fetchAllocationData, setAddMode }) {
                     value={allocationDescription}
                     onChange={(e) => setAllocationDescription(e.target.value)}
                     placeholder="Add a description..."
+                    autoFocus
                 />
 
                 <label htmlFor="allocation-amount">Amount</label>

@@ -78,6 +78,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.table-header {
+  display: flex;
+}
+
+.new-button {
+  position: relative;
+  top: 50px;
+  left: 30px;
+  height: 100%;
+}
+
 .add-button, .cancel-button {
   margin-right: 6px;
 }

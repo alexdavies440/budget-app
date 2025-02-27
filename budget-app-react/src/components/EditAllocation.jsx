@@ -53,6 +53,7 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
                     value={allocationDescription}
                     onChange={(e) => setAllocationDescription(e.target.value)}
                     placeholder="Add a description..."
+                    autoFocus
                 />
 
                 <label htmlFor="allocation-amount">Amount</label>
