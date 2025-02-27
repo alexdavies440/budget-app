@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -59,14 +59,14 @@ input[type="number"] {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid black;
   font-size: 0.9em;
   padding: 6px;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: 0.25s ease-out;
+  transition: 0.25s ease-in-out;
 }
 
 button:hover {
@@ -145,3 +145,4 @@ td, th {
   padding: 20px;
   padding-right: 70px;
 }
+

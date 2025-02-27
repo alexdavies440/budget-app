@@ -14,6 +14,9 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
     const [editMode, setEditMode] = useState(false);
     const [editItem, setEditItem] = useState(null);
 
+    const sortedExpenses = expenseData.sort((a, b) => b.amount - a.amount);
+    setExpenseData(sortedExpenses);
+
     function expensePercent(expense) {
         let expenseTotal = 0;
         let num = 0;
