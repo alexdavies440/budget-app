@@ -58,22 +58,22 @@ export default function Content() {
 
     return (
         <div>
-            <AddExpense
+            {/* <AddExpense
                 url="http://localhost:8080/add-expense"
                 fetchExpenseData={fetchExpenseData}
-            />
+            /> */}
             {/* <AddAllocation
                 url="http://localhost:8080/add-allocation"
                 fetchAllocationData={fetchAllocationData}
             /> */}
-            {/* <ExpenseTable
+            <ExpenseTable
                 toTitleCase={toTitleCase}
                 setExpenseData={setExpenseData}
                 expenseData={expenseData}
                 fetchExpenseData={fetchExpenseData}
                 checkedExpenses={checkedExpenses}
                 setCheckedExpenses={setCheckedExpenses}
-            /> */}
+            />
             <AllocationTable
                 toTitleCase={toTitleCase}
                 allocationData={allocationData}

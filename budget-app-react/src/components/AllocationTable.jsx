@@ -16,7 +16,6 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
     const [editItem, setEditItem] = useState(null);
 
     const [addMode, setAddMode] = useState(false);
-    // const [addItem, setAddItem] = useState(null);
 
     return (
         <div>

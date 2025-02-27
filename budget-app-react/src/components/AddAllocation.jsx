@@ -41,8 +41,8 @@ export default function AddAllocation({ fetchAllocationData, setAddMode }) {
     }
 
     return (
-        <div className="edit-form">
-            <form onSubmit={handleSubmit} className="edit-form-inner inner-allocation">
+        <div className="add-form">
+            <form onSubmit={handleSubmit} className="add-form-inner inner-allocation">
                 <label htmlFor="allocation-description">Allocation</label>
                 <input
                     type="text"

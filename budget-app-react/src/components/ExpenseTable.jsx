@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
 import AddButton from "./AddButton";
+import AddExpense from "./AddExpense";
 import RemoveButton from "./RemoveButton";
 import EditButton from "./EditButton";
 import EditExpense from "./EditExpense";
@@ -14,6 +15,8 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
 
     const [editMode, setEditMode] = useState(false);
     const [editItem, setEditItem] = useState(null);
+
+    const [addMode, setAddMode] = useState(false);
 
     const sortedExpenses = expenseData.sort((a, b) => b.amount - a.amount);
     setExpenseData(sortedExpenses);
@@ -35,6 +38,11 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
     return (
         <div>
             <h2>Expenses</h2>
+            <AddButton setAddMode={setAddMode}/>
+            {addMode && <AddExpense
+                fetchExpenseData={fetchExpenseData}
+                setAddMode={setAddMode}
+            />}
             <table>
                 <thead>
                     <tr>
