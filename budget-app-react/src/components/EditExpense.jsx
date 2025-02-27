@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SelectCategory from "../SelectCategory";
-import CancelButton from "../CancelButton";
+import SelectCategory from "./SelectCategory";
+import CancelButton from "./CancelButton";
 
 export default function EditExpense({ fetchExpenseData, editItem, setEditMode }) {
 
