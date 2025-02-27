@@ -19,25 +19,24 @@ export default function AddAllocation({ fetchAllocationData, setAddMode }) {
         if (allocationDescription === "") {
             setDescriptionError(true);
         }
-        if (allocationAmount < 1 || isNaN(allocationAmount)) {
+        else if (allocationAmount < 1 || isNaN(allocationAmount)) {
             setAmmountError(true);
+        } else {
+            fetch('http://localhost:8080/add-allocation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    description: allocationDescription,
+                    amount: allocationAmount,
+                }),
+            })
+                .then(setAllocationDescription(""))
+                .then(setAllocationAmount(""))
+                .then(fetchAllocationData)
+                .then(setAddMode(false))
         }
-
-        fetch('http://localhost:8080/add-allocation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                description: allocationDescription,
-                amount: allocationAmount,
-            }),
-        })
-            .then(setAllocationDescription(""))
-            .then(setAllocationAmount(""))
-            .then(fetchAllocationData)
-            .then(setAddMode(false))
-
     }
 
     return (

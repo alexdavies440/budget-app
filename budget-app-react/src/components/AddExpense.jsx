@@ -20,26 +20,26 @@ export default function AddExpense({ fetchExpenseData, setAddMode }) {
         if (description === "") {
             setDescriptionError(true);
         }
-        if (cost < 1 || isNaN(cost)) {
+        else if (cost < 1 || isNaN(cost)) {
             setAmmountError(true);
+        } else {
+            fetch('http://localhost:8080/add-expense', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    description: description,
+                    amount: cost,
+                    category: newCategory,
+                }),
+            })
+                .then(setDescription(""))
+                .then(setNewCategory('MISC'))
+                .then(setCost(""))
+                .then(fetchExpenseData)
+                .then(setAddMode(false))
         }
-
-        fetch('http://localhost:8080/add-expense', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                description: description,
-                amount: cost,
-                category: newCategory,
-            }),
-        })
-            .then(setDescription(""))
-            .then(setNewCategory('MISC'))
-            .then(setCost(""))
-            .then(fetchExpenseData)
-            .then(setAddMode(false))
 
     }
 
