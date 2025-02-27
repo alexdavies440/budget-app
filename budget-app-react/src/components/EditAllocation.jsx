@@ -53,6 +53,7 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
                     value={allocationDescription}
                     onChange={(e) => setAllocationDescription(e.target.value)}
                     placeholder="Add a description..."
+                    autoFocus
                 />
 
                 <label htmlFor="allocation-amount">Amount</label>
@@ -65,7 +66,7 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
                 
                 <br />
                 <button className="add-button">Save</button>
-                <CancelButton setEditMode={setEditMode} />
+                <CancelButton setMode={setEditMode} />
 
                 {descriptionError && <div>Allocation description cannot be blank</div>}
                 {ammountError && <div>Amount must be least $1.00</div>}

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import AddButton from "./AddButton";
+import AddAllocation from "./AddAllocation";
 import RemoveButton from "./RemoveButton";
 import CheckBox from "./CheckBox";
-import EditButton from "./Edit/EditButton";
-import EditAllocation from "./Edit/EditAllocation";
+import EditButton from "./EditButton";
+import EditAllocation from "./EditAllocation";
 
 export default function IncomeTable({ toTitleCase, allocationData, fetchAllocationData, checkedAllocations, setCheckedAllocations }) {
 
@@ -13,9 +15,21 @@ export default function IncomeTable({ toTitleCase, allocationData, fetchAllocati
     const [editMode, setEditMode] = useState(false);
     const [editItem, setEditItem] = useState(null);
 
+    const [addMode, setAddMode] = useState(false);
+
     return (
         <div>
-            <h2>Allocations towards Expenses</h2>
+            <div className="table-header">
+                <h2>Allocations towards Expenses</h2>
+                <AddButton setAddMode={setAddMode} />
+            </div>
+
+            {/* <AddButton setAddMode={setAddMode} /> */}
+
+            {addMode && <AddAllocation
+                fetchAllocationData={fetchAllocationData}
+                setAddMode={setAddMode}
+            />}
             <table>
                 <thead>
                     <tr>

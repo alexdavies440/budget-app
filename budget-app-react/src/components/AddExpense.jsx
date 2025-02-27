@@ -1,7 +1,8 @@
 import { useState } from "react";
 import SelectCategory from "./SelectCategory";
+import CancelButton from "./CancelButton";
 
-export default function AddExpense({ fetchExpenseData }) {
+export default function AddExpense({ fetchExpenseData, setAddMode }) {
 
     const [description, setDescription] = useState("");
     const [newCategory, setNewCategory] = useState('MISC');
@@ -19,45 +20,81 @@ export default function AddExpense({ fetchExpenseData }) {
         if (description === "") {
             setDescriptionError(true);
         }
-        if (cost < 1 || isNaN(cost)) {
+        else if (cost < 1 || isNaN(cost)) {
             setAmmountError(true);
+        } else {
+            fetch('http://localhost:8080/add-expense', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    description: description,
+                    amount: cost,
+                    category: newCategory,
+                }),
+            })
+                .then(setDescription(""))
+                .then(setNewCategory('MISC'))
+                .then(setCost(""))
+                .then(fetchExpenseData)
+                .then(setAddMode(false))
         }
-
-        fetch('http://localhost:8080/add-expense', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                description: description,
-                amount: cost,
-                category: newCategory,
-            }),
-        })
-            .then(setDescription(""))
-            .then(setNewCategory('MISC'))
-            .then(setCost(""))
-            .then(fetchExpenseData)
 
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="description">Expense</label>
-            <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Add a description..." />
+        <div className="add-form">
+            <form onSubmit={handleSubmit} className="add-form-inner inner-expense">
+                <label htmlFor="description">Expense</label>
+                <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Add a description..."
+                    autoFocus
+                />
 
-            <SelectCategory
-                newCategory={newCategory}
-                setNewCategory={setNewCategory}
-            />
+                <SelectCategory
+                    newCategory={newCategory}
+                    setNewCategory={setNewCategory}
+                />
 
-            <label htmlFor="cost">Cost $</label>
-            <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
-            
-            <button className="add-button">Add</button>
+                <label htmlFor="cost">Cost $</label>
+                <input
+                    type="number"
+                    name="cost"
+                    value={cost}
+                    onChange={(e) => setCost(e.target.value)}
+                />
 
-            {descriptionError && <div>Expense description cannot be blank</div>}
-            {ammountError && <div>Cost must be at least $1.00</div>}
-        </form>
+                <br />
+                <button className="add-button">Add</button>
+                <CancelButton setMode={setAddMode} />
+
+                {descriptionError && <div>Allocation description cannot be blank</div>}
+                {ammountError && <div>Amount must be least $1.00</div>}
+            </form>
+        </div>
+
+
+        // <form onSubmit={handleSubmit}>
+        //     <label htmlFor="description">Expense</label>
+        //     <input type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Add a description..." />
+
+        //     <SelectCategory
+        //         newCategory={newCategory}
+        //         setNewCategory={setNewCategory}
+        //     />
+
+        //     <label htmlFor="cost">Cost $</label>
+        //     <input type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
+
+        //     <button className="add-button">Add</button>
+
+        //     {descriptionError && <div>Expense description cannot be blank</div>}
+        //     {ammountError && <div>Cost must be at least $1.00</div>}
+        // </form>
     );
 }

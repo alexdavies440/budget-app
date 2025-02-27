@@ -1,6 +1,7 @@
 import { useState } from "react";
+import CancelButton from "./CancelButton";
 
-export default function AddIncome({ fetchAllocationData }) {
+export default function AddAllocation({ fetchAllocationData, setAddMode }) {
 
     const [allocationDescription, setAllocationDescription] = useState("");
     const [allocationAmount, setAllocationAmount] = useState("");
@@ -18,49 +19,54 @@ export default function AddIncome({ fetchAllocationData }) {
         if (allocationDescription === "") {
             setDescriptionError(true);
         }
-        if (allocationAmount < 1 || isNaN(allocationAmount)) {
+        else if (allocationAmount < 1 || isNaN(allocationAmount)) {
             setAmmountError(true);
+        } else {
+            fetch('http://localhost:8080/add-allocation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    description: allocationDescription,
+                    amount: allocationAmount,
+                }),
+            })
+                .then(setAllocationDescription(""))
+                .then(setAllocationAmount(""))
+                .then(fetchAllocationData)
+                .then(setAddMode(false))
         }
-
-        fetch('http://localhost:8080/add-allocation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                description: allocationDescription,
-                amount: allocationAmount,
-            }),
-        })
-            .then(setAllocationDescription(""))
-            .then(setAllocationAmount(""))
-            .then(fetchAllocationData)
-
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="allocation-description">Allocation</label>
-            <input
-                type="text"
-                name="allocation-description"
-                value={allocationDescription}
-                onChange={(e) => setAllocationDescription(e.target.value)}
-                placeholder="Add a description..."
-            />
+        <div className="add-form">
+            <form onSubmit={handleSubmit} className="add-form-inner inner-allocation">
+                <label htmlFor="allocation-description">Allocation</label>
+                <input
+                    type="text"
+                    name="allocation-description"
+                    value={allocationDescription}
+                    onChange={(e) => setAllocationDescription(e.target.value)}
+                    placeholder="Add a description..."
+                    autoFocus
+                />
 
-            <label htmlFor="allocation-amount">Amount</label>
-            <input
-                type="number"
-                name="allocation-amount"
-                value={allocationAmount}
-                onChange={(e) => setAllocationAmount(e.target.value)}
-            />
+                <label htmlFor="allocation-amount">Amount</label>
+                <input
+                    type="number"
+                    name="allocation-amount"
+                    value={allocationAmount}
+                    onChange={(e) => setAllocationAmount(e.target.value)}
+                />
 
-            <button className="add-button">Add</button>
+                <br />
+                <button className="add-button">Add</button>
+                <CancelButton setMode={setAddMode} />
 
-            {descriptionError && <div>Allocation description cannot be blank</div>}
-            {ammountError && <div>Amount must be least $1.00</div>}
-        </form>
+                {descriptionError && <div>Allocation description cannot be blank</div>}
+                {ammountError && <div>Amount must be least $1.00</div>}
+            </form>
+        </div>
     );
 }
