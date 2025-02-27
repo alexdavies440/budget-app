@@ -74,7 +74,7 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
                 
                 <br />
                 <button className="add-button">Save</button>
-                <CancelButton setEditMode={setEditMode} />
+                <CancelButton setMode={setEditMode} />
 
                 {editDescriptionError && <div>Expense description cannot be blank</div>}
                 {editAmmountError && <div>Cost must be at least $1.00</div>}

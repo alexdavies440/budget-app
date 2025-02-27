@@ -65,7 +65,7 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
                 
                 <br />
                 <button className="add-button">Save</button>
-                <CancelButton setEditMode={setEditMode} />
+                <CancelButton setMode={setEditMode} />
 
                 {descriptionError && <div>Allocation description cannot be blank</div>}
                 {ammountError && <div>Amount must be least $1.00</div>}

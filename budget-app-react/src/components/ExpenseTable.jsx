@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import CheckBox from "./CheckBox";
+import AddButton from "./AddButton";
 import RemoveButton from "./RemoveButton";
-import EditButton from "./Edit/EditButton";
-import EditExpense from "./Edit/EditExpense";
+import EditButton from "./EditButton";
+import EditExpense from "./EditExpense";
 
 export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData, fetchExpenseData, checkedExpenses, setCheckedExpenses }) {
 

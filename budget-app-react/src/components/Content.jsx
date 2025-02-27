@@ -62,18 +62,18 @@ export default function Content() {
                 url="http://localhost:8080/add-expense"
                 fetchExpenseData={fetchExpenseData}
             />
-            <AddAllocation
+            {/* <AddAllocation
                 url="http://localhost:8080/add-allocation"
                 fetchAllocationData={fetchAllocationData}
-            />
-            <ExpenseTable
+            /> */}
+            {/* <ExpenseTable
                 toTitleCase={toTitleCase}
                 setExpenseData={setExpenseData}
                 expenseData={expenseData}
                 fetchExpenseData={fetchExpenseData}
                 checkedExpenses={checkedExpenses}
                 setCheckedExpenses={setCheckedExpenses}
-            />
+            /> */}
             <AllocationTable
                 toTitleCase={toTitleCase}
                 allocationData={allocationData}

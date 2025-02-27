@@ -1,8 +1,8 @@
 
 
-export default function CancelButton({ setEditMode }) {
+export default function CancelButton({ setMode }) {
 
     return (
-        <button className="cancel-button" onClick={() => setEditMode(false)}>Cancel</button>
+        <button className="cancel-button" onClick={() => setMode(false)}>Cancel</button>
     );
 }
