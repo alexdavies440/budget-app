@@ -1,6 +1,7 @@
 package com.example.budget_app.controller;
 
 import com.example.budget_app.dto.ExpenseDTO;
+import com.example.budget_app.model.Allocation;
 import com.example.budget_app.model.Category;
 import com.example.budget_app.model.Expense;
 import com.example.budget_app.repository.ExpenseRepository;
@@ -72,5 +73,34 @@ public class ExpenseController {
         if (optExpense.isPresent()) {
             expenseRepository.deleteById(id);
         }
+    }
+
+    @PostMapping("/update-expense/{id}")
+    public String updateExpense(@PathVariable long id, @Valid @RequestBody ExpenseDTO expenseDTO) {
+
+        String response;
+
+        if (expenseDTO.getDescription().isBlank()) {
+            response = "Description cannot be blank";
+        }
+        else if (expenseDTO.getAmount() < 1) {
+            response = "Amount must be at least $1.00";
+        }
+        else {
+            Optional<Expense> optExpense = expenseRepository.findById(id);
+
+            if (optExpense.isPresent()) {
+
+                Expense existingExpense = optExpense.get();
+                existingExpense.setDescription(expenseDTO.getDescription());
+                existingExpense.setAmount(expenseDTO.getAmount());
+                existingExpense.setCategory(expenseDTO.getCategory());
+
+                expenseRepository.save(existingExpense);
+            }
+            return "Accepted";
+        }
+
+        return response;
     }
 }

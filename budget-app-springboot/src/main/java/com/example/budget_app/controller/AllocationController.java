@@ -65,4 +65,32 @@ public class AllocationController {
             allocationRepository.deleteById(id);
         }
     }
+
+    @PostMapping("/update-allocation/{id}")
+    public String updateAllocation(@PathVariable long id, @Valid @RequestBody AllocationDTO allocationDTO) {
+
+        String response;
+
+        if (allocationDTO.getDescription().isBlank()) {
+            response = "Description cannot be blank";
+        }
+        else if (allocationDTO.getAmount() < 1) {
+            response = "Amount must be at least $1.00";
+        }
+        else {
+            Optional<Allocation> optAllocation = allocationRepository.findById(id);
+
+            if (optAllocation.isPresent()) {
+
+                Allocation existingAllocation = optAllocation.get();
+                existingAllocation.setDescription(allocationDTO.getDescription());
+                existingAllocation.setAmount(allocationDTO.getAmount());
+
+                allocationRepository.save(existingAllocation);
+            }
+            response = "Update successful";
+        }
+
+        return response;
+    }
 }

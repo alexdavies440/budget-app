@@ -41,11 +41,22 @@ export default function AddIncome({ fetchAllocationData }) {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="allocation-description">Allocation</label>
-            <input type="text" name="allocation-description" value={allocationDescription} onChange={(e) => setAllocationDescription(e.target.value)} placeholder="Add a description..." />
-           
+            <input
+                type="text"
+                name="allocation-description"
+                value={allocationDescription}
+                onChange={(e) => setAllocationDescription(e.target.value)}
+                placeholder="Add a description..."
+            />
+
             <label htmlFor="allocation-amount">Amount</label>
-            <input type="number" name="allocation-amount" value={allocationAmount} onChange={(e) => setAllocationAmount(e.target.value)} />
-          
+            <input
+                type="number"
+                name="allocation-amount"
+                value={allocationAmount}
+                onChange={(e) => setAllocationAmount(e.target.value)}
+            />
+
             <button className="add-button">Add</button>
 
             {descriptionError && <div>Allocation description cannot be blank</div>}
