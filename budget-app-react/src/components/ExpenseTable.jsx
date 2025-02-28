@@ -52,8 +52,8 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
                         <th>Cost</th>
                         <th>Description</th>
                         <th>Category</th>
-                        <th>Include</th>
                         <th>% of Total</th>
+                        <th>Include</th>
                     </tr>
                 </thead>
 
@@ -64,6 +64,7 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
                                 <td>${expense.amount}</td>
                                 <td>{toTitleCase(expense.description)}</td>
                                 <td>{toTitleCase(expense.category.toLowerCase())}</td>
+                                <td>{expensePercent(expense)}</td>
                                 <td>
                                     <CheckBox
                                         item={expense}
@@ -71,7 +72,6 @@ export default function ExpenseTable({ toTitleCase, setExpenseData, expenseData,
                                         setCheckedItems={setCheckedExpenses}
                                     />
                                 </td>
-                                <td>{expensePercent(expense)}</td>
                                 <td>
                                     <EditButton
                                         item={expense}

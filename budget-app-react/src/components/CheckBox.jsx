@@ -21,10 +21,10 @@ export default function CheckBox({ item, checkedItems, setCheckedItems }) {
     }
 
     return (
-        <span onClick={() => handleChange(item)}>
-                <input type="checkbox" checked={isChecked} />
-                <span></span>
-        </span>
+        <div>
+            <input type="checkbox" name="checkbox" checked={isChecked} onChange={() => handleChange(item)} />
+            <label htmlFor="checkbox"></label>
+        </div>
         
     );
 }
