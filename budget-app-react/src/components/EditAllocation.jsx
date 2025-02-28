@@ -18,7 +18,7 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
         if (allocationDescription === "") {
             setDescriptionError(true);
         }
-        else if (allocationAmount < 1 || isNaN(allocationAmount)) {
+        else if (allocationAmount < 0.01 || isNaN(allocationAmount)) {
             setAmmountError(true);
         }
         else {
@@ -69,7 +69,7 @@ export default function EditAllocationForm({ fetchAllocationData, editItem, setE
                 <CancelButton setMode={setEditMode} />
 
                 {descriptionError && <div>Allocation description cannot be blank</div>}
-                {ammountError && <div>Amount must be least $1.00</div>}
+                {ammountError && <div>Amount must be least $0.01</div>}
             </form>
         </div>
     );

@@ -20,7 +20,7 @@ export default function AddExpense({ fetchExpenseData, setAddMode }) {
         if (description === "") {
             setDescriptionError(true);
         }
-        else if (cost < 1 || isNaN(cost)) {
+        else if (cost < 0.01 || isNaN(cost)) {
             setAmmountError(true);
         } else {
             fetch('http://localhost:8080/add-expense', {
@@ -74,7 +74,7 @@ export default function AddExpense({ fetchExpenseData, setAddMode }) {
                 <CancelButton setMode={setAddMode} />
 
                 {descriptionError && <div>Allocation description cannot be blank</div>}
-                {ammountError && <div>Amount must be least $1.00</div>}
+                {ammountError && <div>Amount must be least $0.01</div>}
             </form>
         </div>
 

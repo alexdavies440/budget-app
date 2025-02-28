@@ -47,8 +47,8 @@ public class ExpenseController {
         if (expenseDTO.getDescription().isBlank()) {
             response = "Description cannot be blank";
         }
-        else if (expenseDTO.getAmount() < 1) {
-            response = "Amount must be at least $1.00";
+        else if (expenseDTO.getAmount() < 0.01) {
+            response = "Amount must be at least $0.01";
         }
         else {
             Expense newExpense = new Expense(
@@ -83,8 +83,8 @@ public class ExpenseController {
         if (expenseDTO.getDescription().isBlank()) {
             response = "Description cannot be blank";
         }
-        else if (expenseDTO.getAmount() < 1) {
-            response = "Amount must be at least $1.00";
+        else if (expenseDTO.getAmount() < 0.01) {
+            response = "Amount must be at least $0.01";
         }
         else {
             Optional<Expense> optExpense = expenseRepository.findById(id);

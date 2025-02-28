@@ -19,7 +19,7 @@ export default function AddAllocation({ fetchAllocationData, setAddMode }) {
         if (allocationDescription === "") {
             setDescriptionError(true);
         }
-        else if (allocationAmount < 1 || isNaN(allocationAmount)) {
+        else if (allocationAmount < 0.01 || isNaN(allocationAmount)) {
             setAmmountError(true);
         } else {
             fetch('http://localhost:8080/add-allocation', {
@@ -65,7 +65,7 @@ export default function AddAllocation({ fetchAllocationData, setAddMode }) {
                 <CancelButton setMode={setAddMode} />
 
                 {descriptionError && <div>Allocation description cannot be blank</div>}
-                {ammountError && <div>Amount must be least $1.00</div>}
+                {ammountError && <div>Amount must be least $0.01</div>}
             </form>
         </div>
     );

@@ -20,7 +20,7 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
         if (description === "") {
             setEditDescriptionError(true);
         }
-        else if (cost < 1 || isNaN(cost)) {
+        else if (cost < 0.01 || isNaN(cost)) {
             setEditAmmountError(true);
         }
         else {
@@ -78,7 +78,7 @@ export default function EditExpense({ fetchExpenseData, editItem, setEditMode })
                 <CancelButton setMode={setEditMode} />
 
                 {editDescriptionError && <div>Expense description cannot be blank</div>}
-                {editAmmountError && <div>Cost must be at least $1.00</div>}
+                {editAmmountError && <div>Cost must be at least $0.01</div>}
             </form>
         </div>
     );
