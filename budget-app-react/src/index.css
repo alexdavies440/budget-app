@@ -26,8 +26,7 @@ label {
   font-weight: bold;
 }
 
-input,
-select {
+input, select {
   outline: none;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -56,7 +55,7 @@ input[type="text"] {
   width: 500px;
 }
 
-/* Make checkbox invisible */
+/* Make checkbox invisible but overlay on top of pseudo checkbox */
 input[type="checkbox"] {
   opacity: 0;
   position: relative;
@@ -184,11 +183,11 @@ table {
 
 tr {
   border-bottom: 1px solid #64ffcb;
-  transition: ease 0.75s;
+  transition: 0.75s ease;
 }
 
 tbody tr:hover {
-  background-color: #1d1d1d;
+  box-shadow: 0 0 30px black;
 }
 
 td, th {
